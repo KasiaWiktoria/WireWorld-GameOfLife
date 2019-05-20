@@ -25,14 +25,18 @@ public class GameOfLife extends Board {
         Random generator = new Random();
         GraphicsContext canvasGC = canvas.getGraphicsContext2D();
         canvasGC.setFill(Color.BLACK);
-        for (int i = 0; i < this.gameBoard.getRows(); i++) {
-            for (int j = 0; j < this.gameBoard.getColumns(); j++) {
-                if (generator.nextBoolean() == true)
-                    canvasGC.setFill(Color.WHITE);
-                else
-                    canvasGC.setFill(Color.BLACK);
-                canvasGC.fillRect(j * this.gameBoard.getCellSize(), this.gameBoard.getCellSize() * i, this.gameBoard.getCellSize(), this.gameBoard.getCellSize());
-            }
+        try {
+	        for (int i = 0; i < this.gameBoard.getRows(); i++) {
+	            for (int j = 0; j < this.gameBoard.getColumns(); j++) {
+	                if (generator.nextBoolean() == true)
+	                    canvasGC.setFill(Color.WHITE);
+	                else
+	                    canvasGC.setFill(Color.BLACK);
+	                canvasGC.fillRect(j * this.gameBoard.getCellSize(), this.gameBoard.getCellSize() * i, this.gameBoard.getCellSize(), this.gameBoard.getCellSize());
+	            }
+	        }
+        }catch(Exception e) {
+        	
         }
     }
 
