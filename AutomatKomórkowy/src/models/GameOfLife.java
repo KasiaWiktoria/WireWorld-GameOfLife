@@ -9,7 +9,6 @@ import java.util.Random;
 
 public class GameOfLife extends Board {
 
-    Board gameBoard;
 
     public GameOfLife(int columns, int rows, Canvas canvas) {
         super(columns, rows, canvas);
@@ -26,18 +25,16 @@ public class GameOfLife extends Board {
         GraphicsContext canvasGC = canvas.getGraphicsContext2D();
         canvasGC.setFill(Color.BLACK);
         try {
-	        for (int i = 0; i < this.gameBoard.getRows(); i++) {
-	            for (int j = 0; j < this.gameBoard.getColumns(); j++) {
+	        for (int i = 0; i < this.getRows(); i++) {
+	            for (int j = 0; j < this.getColumns(); j++) {
 	                if (generator.nextBoolean() == true)
 	                    canvasGC.setFill(Color.WHITE);
 	                else
 	                    canvasGC.setFill(Color.BLACK);
-	                canvasGC.fillRect(j * this.gameBoard.getCellSize(), this.gameBoard.getCellSize() * i, this.gameBoard.getCellSize(), this.gameBoard.getCellSize());
+	                canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
 	            }
 	        }
         }catch(Exception e) {
-        	
         }
     }
-
 }

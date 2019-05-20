@@ -37,8 +37,7 @@ public class Board {
 		}
 	}
 
-	public void randomFill(Canvas canvas) {
-	}
+	public void randomFill(Canvas canvas) {}
 
 	public void setDimension(TextField columns, TextField rows) {
 
@@ -46,7 +45,7 @@ public class Board {
 			this.setColumns(Integer.parseInt(columns.getText()));
 			this.setRows(Integer.parseInt(rows.getText()));
 		} catch (NumberFormatException e) {
-			System.out.println(e);
+			System.out.println("cos nie tak z wymiarami, zly format\n");
 		}
 		if (800 / Double.parseDouble(columns.getText()) < 600 / Double.parseDouble(rows.getText()))
 			this.setCellSize(800. / Double.parseDouble(columns.getText()));

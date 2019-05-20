@@ -72,7 +72,7 @@ public class MainController {
 
     public void initialize(){
 
-        //_________________________WireWorld_____________________________________
+        //___________________________WireWorld_____________________________________
 
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
@@ -82,7 +82,7 @@ public class MainController {
         WcolorPicker.colorFill();
 
 
-        //_________________________GameOfLife_____________________________________
+        //___________________________GameOfLife_____________________________________
 
         golBoard.randomFill(golCanvas);
         golBoard.setPromptForDimensions(golColumns, golRows);
