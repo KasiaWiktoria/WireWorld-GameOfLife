@@ -74,8 +74,6 @@ public class MainController {
 
         //_________________________WireWorld_____________________________________
 
-        WireWorldController WireWorldController = new WireWorldController();
-
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
         wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows));
