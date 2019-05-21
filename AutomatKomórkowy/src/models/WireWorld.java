@@ -20,28 +20,7 @@ public class WireWorld extends Board {
         HEAD,
         TAIL
     }
-/*
-    public void setDimension(TextField columns, TextField rows, Canvas canvas, String kindOfBoard) {
 
-        try {
-            this.gameBoard.setColumns(Integer.parseInt(columns.getText()));
-            this.gameBoard.setRows(Integer.parseInt(rows.getText()));
-        }catch(NumberFormatException e){
-            System.out.println(e);
-        }
-        if(800/Double.parseDouble(columns.getText()) <600/Double.parseDouble(rows.getText()))
-            this.gameBoard.setCellSize(800./Double.parseDouble(columns.getText()));
-        else
-            this.gameBoard.setCellSize(600./Double.parseDouble(rows.getText()));
-        this.gameBoard.cleanCanvas(canvas);
-
-        if(kindOfBoard == "gol")
-            this.randomFill(canvas);
-        else if(kindOfBoard == "ww")
-            this.blackFill(canvas);
-
-    }
-*/
     public void drawSingeCell(Canvas canvas, int x, int y, WireWorld.WiereworldStates state) {
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 

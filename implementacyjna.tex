@@ -208,6 +208,34 @@ Dla obu algorytmów wykorzystane jest sąsiedztwo Moore'a.
 
 
 \section {Testy}
+\subsection {Test klasy Cells}
+W celu przetestowania tej klasy należy utworzyć jej obiekt oraz poprzez wywołania kolejnych metod sprawdzić, czy jej zmienne są poprawnie inicjowane. Szerszych testów wymaga modułu zliczjący żywych sąsiadów lub sąsiadów o określonym stanie w zależności od wariantu gry, w którym ma funkcjonować obiekt.
+\subsection{Test klasy Board}
+Test tego modułu zakłada zainicjowanie obiektu klasy Board oraz przetestowanie działania jego metod. Do przetestowania tego modułu potrzebny jest poprawnie działająca klasa Cells. Szczegółowych testów wymaga metoda \texttt{neighbours} oraz \texttt{neighbours2}.
+\subsection {Test modułu Files}
+Testy tego modułu polegają na odczycie i zapisie do plików txt. W celu przetestowania tego modułu niezbędny jets poprawnie działający moduł Board. Zapis do pliku w przypadku gry Life powinien wyglądac następująco:
+\begin {verbatim}
+5 5 
+1 0 1 0 0
+0 0 0 0 0
+1 0 0 1 0
+0 1 1 1 1
+0 0 0 0 0 
+\end{verbatim}
+Pierwsze dwie cyfry oznaczają tu wymiary tablicy, która jest zmienną w obiekcie klasy typu Board. Kolejne cyfry symbolizują stany poszczególnych komórek (obiektów klasy Cells), które zostają zainicjowane w tablicy w obiekcie klasy Board. Zera oznaczają stan komórki jako "martwa", a jedynki jako "żywa".
+Plik przedstawiający siatkę dla wariantu gry "Wireworld" powinien wyglądać następująco:
+\begin {verbatim}
+5 5 
+1 0 1 3 0
+0 0 0 0 2
+1 0 0 1 0
+0 1 1 1 1
+2 0 0 3 0 
+\end{verbatim}
+Pierwsze dwie cyfry oznaczają tu wymiary tablicy, która jest zmienną w obiekcie klasy typu Board. Kolejne cyfry symbolizują stany poszczególnych komórek (obiektów klasy Cells), które zostają zainicjowane w tablicy w obiekcie klasy Board. Zera oznaczają stan komórki jako "pusta",  jedynki jako "głowa elektronu", dwójki jako "ogon elektronu", a trójki jako "przewodnik".
+
+\subsection {Test modułu View}
+Test polega na sprawdzeniu sfery wizualnej oraz reakcji programu na poszczególne działania użytkowników (przypadki naciśnięcia przynicku lub wpisania tekstu).
 
 
 

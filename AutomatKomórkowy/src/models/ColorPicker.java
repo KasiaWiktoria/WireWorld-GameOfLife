@@ -13,7 +13,7 @@ public class ColorPicker extends Board {
         super(2 ,2,canvas);
         //this.mainController = MainController;
 
-        canvas.setOnMouseClicked(this::cansClicked);
+        canvas.setOnMouseClicked(this::canvasClicked);
         buttonSize = canvas.getHeight()/2;
     }
 
@@ -37,19 +37,6 @@ public class ColorPicker extends Board {
         bwToolGC.fillRect(buttonSize, 0, buttonSize, buttonSize);
     }
 
-
-    public void colorFill(Canvas colorTool, int colorToolSize){
-        GraphicsContext colorToolGC = colorTool.getGraphicsContext2D();
-        colorToolGC.setFill(Color.RED);
-        colorToolGC.fillRect(0,0, colorToolSize, colorToolSize);
-        colorToolGC.setFill(Color.YELLOW);
-        colorToolGC.fillRect(0, colorToolSize, colorToolSize, colorToolSize);
-        colorToolGC.setFill(Color.BLUE);
-        colorToolGC.fillRect(colorToolSize,0, colorToolSize, colorToolSize);
-        colorToolGC.setFill(Color.BLACK);
-        colorToolGC.fillRect(colorToolSize, colorToolSize, colorToolSize, colorToolSize);
-    }
-
     private WireWorld.WiereworldStates getClickedColorState(int x, int y) {
 
         if (x == 0 && y == 0)
@@ -63,7 +50,7 @@ public class ColorPicker extends Board {
     }
 
 
-    private void cansClicked(MouseEvent mouseEvent) {
+    private void canvasClicked(MouseEvent mouseEvent) {
         int clickedX = (int) (mouseEvent.getX()/ buttonSize); //new
         int clickedY = (int) (mouseEvent.getX()/ buttonSize);
 
