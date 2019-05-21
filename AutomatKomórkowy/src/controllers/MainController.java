@@ -5,7 +5,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import models.Board;
 import models.ColorPicker;
 import models.GameOfLife;
 import models.WireWorld;
@@ -76,7 +75,7 @@ public class MainController {
 
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
-        wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows));
+        wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows, wwCanvas));
         wwBoardReset.setOnAction(e -> wwBoard.blackFill(wwCanvas));
         ColorPicker WcolorPicker = new ColorPicker(wwColorPicker);
         WcolorPicker.colorFill();
@@ -86,7 +85,7 @@ public class MainController {
 
         golBoard.randomFill(golCanvas);
         golBoard.setPromptForDimensions(golColumns, golRows);
-        golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows));
+        golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows, golCanvas));
         golBoardReset.setOnAction(e -> golBoard.blackFill(golCanvas));
         golRandomFill.setOnAction(e -> golBoard.randomFill(golCanvas));
         ColorPicker GoLcolorPicker = new ColorPicker(golColorPicker);

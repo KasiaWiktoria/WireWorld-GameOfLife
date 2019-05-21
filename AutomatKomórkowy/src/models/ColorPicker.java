@@ -1,13 +1,11 @@
 package models;
 
-import controllers.MainController;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import models.WireWorld;
 
-public class ColorPicker extends Board{
+public class ColorPicker extends Board {
     //private final MainController mainController;
     private final double buttonSize;
 

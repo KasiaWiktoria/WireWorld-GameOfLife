@@ -4,12 +4,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import models.Cell;
-import models.WireWorld;
 
-import java.util.Random;
-
-public class Board {
+public abstract class Board {
 
 	private int columns;
 	private int rows;
@@ -39,7 +35,7 @@ public class Board {
 
 	public void randomFill(Canvas canvas) {}
 
-	public void setDimension(TextField columns, TextField rows) {
+	public void setDimension(TextField columns, TextField rows, Canvas gameCanvas) {
 
 		try {
 			this.setColumns(Integer.parseInt(columns.getText()));
@@ -51,8 +47,8 @@ public class Board {
 			this.setCellSize(800. / Double.parseDouble(columns.getText()));
 		else
 			this.setCellSize(600. / Double.parseDouble(rows.getText()));
-		this.cleanCanvas(canvas);
-		this.randomFill(canvas);
+		this.cleanCanvas(gameCanvas);
+		this.randomFill(gameCanvas);
 	}
 
 	public void cleanCanvas(Canvas canvas) {
@@ -95,7 +91,7 @@ public class Board {
 	}
 
 	public void setCell(WireWorld.WiereworldStates newState, Board board, int clickedX, int clickedY,
-			boolean selectionActive) {
+						boolean selectionActive) {
 		if (!selectionActive)
 			return;
 
