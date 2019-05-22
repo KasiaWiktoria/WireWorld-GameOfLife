@@ -14,10 +14,16 @@ public class ColorPicker extends Board {
         //this.mainController = MainController;
 
         canvas.setOnMouseClicked(this::canvasClicked);
-        buttonSize = canvas.getHeight()/2;
+        buttonSize = canvas.getWidth()/2;
+    }
+
+    public void setSize(){
+        this.setColumns((int)(this.canvas.getWidth()/this.buttonSize));
+        this.setRows((int)(this.canvas.getHeight()/this.buttonSize));
     }
 
     public void colorFill() {
+        this.setSize();
         GraphicsContext colorToolGC = canvas.getGraphicsContext2D();
         colorToolGC.setFill(Color.RED);
         colorToolGC.fillRect(0,0, buttonSize, buttonSize);
@@ -30,6 +36,7 @@ public class ColorPicker extends Board {
     }
 
     public void bwFill() {
+        this.setSize();
         GraphicsContext bwToolGC = canvas.getGraphicsContext2D();
         bwToolGC.setFill(Color.BLACK);
         bwToolGC.fillRect(0, 0, buttonSize, buttonSize);
