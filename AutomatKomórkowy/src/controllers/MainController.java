@@ -5,13 +5,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import models.ColorPicker;
-import models.GameOfLife;
-import models.WireWorld;
+import view.ColorPicker;
+import view.GameOfLifeBoard;
+import view.WireWorldBoard;
 
 public class MainController {
 
-    //WireWorld
+    //WireWorldBoard
     @FXML
     Button wwStart;
     @FXML
@@ -27,9 +27,9 @@ public class MainController {
     @FXML
     Canvas wwColorPicker;
 
-    WireWorld wwBoard  = new WireWorld(64,48, wwCanvas);
+    WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
 
-    //GameOfLife
+    //GameOfLifeBoard
     @FXML
     Button golStart;
     @FXML
@@ -47,7 +47,7 @@ public class MainController {
     @FXML
     Canvas golColorPicker;
 
-    GameOfLife golBoard = new GameOfLife(32,24, golCanvas);
+    GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
 
     private int clickedX;
     private int clickedY;

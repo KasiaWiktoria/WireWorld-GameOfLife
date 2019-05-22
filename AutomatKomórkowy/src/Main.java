@@ -10,7 +10,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("view/Game.fxml"));
-			primaryStage.setTitle("WireWorld");
+			primaryStage.setTitle("WireWorldBoard");
 			primaryStage.setScene(new Scene(root, 1000, 700));
 			primaryStage.show();
 		} catch (Exception e) {

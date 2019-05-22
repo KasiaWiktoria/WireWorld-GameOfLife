@@ -1,39 +1,22 @@
 package models;
 
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import view.Board;
 
-import java.util.Random;
+import static models.Cell.State.DEAD;
 
-public class GameOfLife extends Board {
+public class GameOfLife extends Game {
 
-
-    public GameOfLife(int columns, int rows, Canvas canvas) {
-        super(columns, rows, canvas);
+    public GameOfLife(Board gameBoard, Cell[] cells) {
+        super(gameBoard, cells);
     }
 
-    public enum GameOfLifeStates {
-        DEAD,
-        ALiVE
-    }
-
-    @Override
-    public void randomFill(Canvas canvas) {
-        Random generator = new Random();
-        GraphicsContext canvasGC = canvas.getGraphicsContext2D();
-        canvasGC.setFill(Color.BLACK);
-        try {
-	        for (int i = 0; i < this.getRows(); i++) {
-	            for (int j = 0; j < this.getColumns(); j++) {
-	                if (generator.nextBoolean() == true)
-	                    canvasGC.setFill(Color.WHITE);
-	                else
-	                    canvasGC.setFill(Color.BLACK);
-	                canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
-	            }
-	        }
-        }catch(Exception e) {
+    public void initCells(Board board){
+        int c = board.getColumns();
+        int r = board.getRows();
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c;j++){
+                this.cells[i*r+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), DEAD);
+            }
         }
     }
 }
