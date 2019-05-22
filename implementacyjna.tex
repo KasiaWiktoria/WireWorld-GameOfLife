@@ -64,7 +64,7 @@ W pakiecie models będą się znajdować klasy, które służą do wykonywania w
 W pakiecie View znajdą się wszystkie pliki .fxml odpowiedzialne za wygląd automatu komórkowego.
 W pakiecie controllers będą zawarte kontrolery, służące do obsługi żądań użytkownika.
 
-\section {Opis modułów}
+\section{Opis modułów}
 Program składa się z trzech głównych modułów odpowiedzialnych za prawidłowe działanie programu. Są to
 \begin {itemize}
 \item Model -  odpowiada za przeprowadzanie kolejnych generacji, jak i całej symulacji
@@ -72,7 +72,7 @@ Program składa się z trzech głównych modułów odpowiedzialnych za prawidło
 \item GUI - moduł odpowiadający za aspekt wizualny gry, a także reakcję na działania użytkownika (przekazuje informację o przypadkach naciśnięcia poszczególnych przycisków)
 \end{itemize}
 
-\subsection {Moduł 	Game}
+\subsection{Moduł Game}
 Moduł ten odpowiada za poprawne przeprowadzenie symulacji. Zawiera klasy reprezentujące grę i zawierające w sobie obiekty klas będących składowymi innych modułów.
 Klasy:
 
@@ -96,7 +96,7 @@ Klasy:
 \end{enumerate}
 
 
-\subsection {Moduł Model}
+\subsection{Moduł Model}
 Moduł ten zawiera klasy będące składowymi klasy Game. Umożliwiają one przeprowadzenie szczegółowej symulacji. Najważniejsze klasy tego modułu to:
 \begin {enumerate}
 \item  \textbf{ public class Cell} - klasa reprezentująca pojedynczą komórkę. Główne zmienne zawarte w tej klasie to:
@@ -149,7 +149,7 @@ Klasa ta posiada także kilka konstruktorów:
 \end{itemize}
 \end{enumerate}
 
-\subsection {Moduł Controller}
+\subsection{Moduł Controller}
 Moduł ten odpowiada za obsługę przez program plików tekstowych. Użytkownik ma możliwość otworzenia symulacji przez wczytanie jej parametrów do pliku, a także jej późniejszy zapis. Wymaganiom tym odpowiadają dwie klasy:
 \begin {enumerate}
 \item \textbf{BoardExport} - klasa ta odpowiada za zapis pliku danych dotyczących siatki komórek. Korzysta z biblioteki java.io.*.  Posiada zmienne:
@@ -172,9 +172,10 @@ Metodą tek klasy jest:
 \end{itemize}
 \end{enumerate}
 
-\subsection {Moduł View}
+\subsection{Moduł View}
+W module view znajduje się plik Game.fxml, który zawiera kod implementacji interfejsu użytkownika w javaFX dla Automatu Komórkowego.
 
-\section {Zastosowane algorytmy}
+\section{Zastosowane algorytmy}
 W programie zostały zastosowane następujące algorytmy:
 
 
@@ -190,7 +191,7 @@ W programie zostały zastosowane następujące algorytmy:
 	\end {enumerate}
 
 
-\subsection { Algorytm wyznaczania stanu komórki dla wariantu gry Wireworld}
+\subsection{ Algorytm wyznaczania stanu komórki dla wariantu gry Wireworld}
 	\begin {enumerate}
 		\item Wywołanie metody klasy Board zliczającej sąsiednich komórek, których stan określany jest jako Głowa Elektronu. 
 		\item Określenie stanu komórki na podstawie poprzedniego stanu i analizy stanów sąsiednich komórek.
@@ -206,13 +207,20 @@ W programie zostały zastosowane następujące algorytmy:
 \end {enumerate}
 Dla obu algorytmów wykorzystane jest sąsiedztwo Moore'a. 
 
+\section{Diagram klas}
 
-\section {Testy}
-\subsection {Test klasy Cells}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=13cm]{DiagramKlas.png}
+	\caption{Diagram Klas}
+\end{figure}
+
+\section{Testy}
+\subsection{Test klasy Cells}
 W celu przetestowania tej klasy należy utworzyć jej obiekt oraz poprzez wywołania kolejnych metod sprawdzić, czy jej zmienne są poprawnie inicjowane. Szerszych testów wymaga modułu zliczjący żywych sąsiadów lub sąsiadów o określonym stanie w zależności od wariantu gry, w którym ma funkcjonować obiekt.
 \subsection{Test klasy Board}
 Test tego modułu zakłada zainicjowanie obiektu klasy Board oraz przetestowanie działania jego metod. Do przetestowania tego modułu potrzebny jest poprawnie działająca klasa Cells. Szczegółowych testów wymaga metoda \texttt{neighbours} oraz \texttt{neighbours2}.
-\subsection {Test modułu Files}
+\subsection{Test modułu Files}
 Testy tego modułu polegają na odczycie i zapisie do plików txt. W celu przetestowania tego modułu niezbędny jets poprawnie działający moduł Board. Zapis do pliku w przypadku gry Life powinien wyglądac następująco:
 \begin {verbatim}
 5 5 

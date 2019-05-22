@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1941dab3-16f1-427b-a441-287586dcdbc7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ColorPicker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ColorPicker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/WireWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/WireWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../implementacyjna.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../implementacyjna.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../implementacyjna.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../implementacyjna.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -171,7 +170,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558473218772" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558473375076" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view/Game.fxml" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
@@ -214,7 +213,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.12684564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
