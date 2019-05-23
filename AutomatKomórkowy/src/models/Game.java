@@ -7,12 +7,16 @@ public abstract class Game {
     public Board gameBoard;
     protected Cell[] cells;
     protected Cell.State[] cellsStates;// = new Cell.State[gameBoard.getColumns()*gameBoard.getRows()];
+    protected int numberOfCells;
 
     public Game(Board board) {
         this.gameBoard = board;
         this.cells = new Cell[board.getColumns()*board.getRows()];
         this.cellsStates = new Cell.State[board.getColumns()*board.getRows()];
+        this.numberOfCells = board.getColumns()*board.getRows();
     }
+
+    public abstract void play();
 
     public void setCells(Cell.State[] states){
         int c = this.gameBoard.getColumns();
@@ -23,6 +27,7 @@ public abstract class Game {
             }
         }
     }
+
 /*
     public void setCells(Board board, Cell.State[] states){
         states = new Cell.State[board.getColumns()*board.getRows()];

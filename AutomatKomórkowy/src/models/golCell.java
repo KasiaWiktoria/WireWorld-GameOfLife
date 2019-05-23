@@ -6,24 +6,24 @@ import static models.Cell.State.DEAD;
 
 public class golCell extends Cell {
 
-    private int aliveNextCells;
+    protected int aliveNextCells;
 
     public golCell(double x, double y, double size, Cell.State state) {
+
         super(x, y, size, state);
+        this.aliveNextCells =0;
     }
 
-    public void countAliveNextCells(){
 
-    }
-
-    public void checkState(){
+    public State checkState(){
         if(this.getState() == DEAD){
-            if(aliveNextCells == 3)
+            if(this.aliveNextCells == 3)
                 this.setState(ALIVE);
         }
         else if(this.getState() == ALIVE){
-            if(aliveNextCells != 2 && aliveNextCells != 3)
+            if(this.aliveNextCells != 2 && this.aliveNextCells != 3)
                 this.setState(DEAD);
         }
+        return this.getState();
     }
 }

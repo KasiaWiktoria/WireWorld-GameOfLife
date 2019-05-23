@@ -9,14 +9,17 @@ import static models.Cell.State.*;
 
 public class GameOfLife extends Game {
 
-    public GameOfLife(Board gameBoard) {
+    protected golCell[] cells;
 
-        super(gameBoard);
-        int c = gameBoard.getColumns();
-        int r = gameBoard.getRows();
+    public GameOfLife(Board board) {
+
+        super(board);
+        this.cells = new golCell[board.getColumns()*board.getRows()];
+        int c = board.getColumns();
+        int r = board.getRows();
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells[i*r+j] = new golCell(j*gameBoard.getCellSize(), i*gameBoard.getCellSize(), gameBoard.getCellSize(), DEAD);
+                this.cells[i*r+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), DEAD);
             }
         }
     }
@@ -42,12 +45,34 @@ public class GameOfLife extends Game {
         }
     }
 
-    public int [] randomStates(int numberOfCells){
-        int [] randomStates = new int[numberOfCells];
-        for(int i = 0; i < numberOfCells; i++){
-            Random generator = new Random();
-            randomStates[i] = generator.nextInt() % 2;
+    public void countAliveNextCells(){
+
+        int c = this.gameBoard.getColumns();
+
+        for(int i=0; i < this.numberOfCells; i++){
+            int[] numbersNextCells = new int[]{i - c - 1, i - c, i - c + 1, i - 1, i + 1, i + c - 1, i + c, i + c + 1};
+            for(int j=0; j<8; j++) {
+                if(numbersNextCells[j] > 0 && numbersNextCells[j] < this.numberOfCells )
+                    if (this.cells[numbersNextCells[j]].getState() == ALIVE)
+                        this.cells[i].aliveNextCells++;
+            }
         }
-        return randomStates;
+    }
+
+    @Override
+    public void play(){
+        this.countAliveNextCells();
+
+        for(int i=0; i <this.numberOfCells; i++){
+            if(this.cells[i].getState() == DEAD){
+                if(this.cells[i].aliveNextCells == 3)
+                    this.cells[i].setState(ALIVE);
+            }
+            else if(this.cells[i].getState() == ALIVE){
+                if(this.cells[i].aliveNextCells != 2 && this.cells[i].aliveNextCells != 3)
+                    this.cells[i].setState(DEAD);
+            }
+        }
+        this.gameBoard.draw(this.getCellsStates());
     }
 }

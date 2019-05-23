@@ -43,8 +43,8 @@ public class WireWorldBoard extends Board {
     }
 
     @Override
-    public void draw(Cell.State[] cellState, Canvas canvas){
-        GraphicsContext canvasGC = canvas.getGraphicsContext2D();
+    public void draw(Cell.State[] cellState){
+        GraphicsContext canvasGC = this.getCanvas().getGraphicsContext2D();
         canvasGC.setFill(Color.BLACK);
         int r = this.getRows();
         int c = this.getColumns();
@@ -71,7 +71,7 @@ public class WireWorldBoard extends Board {
             randomIntStates[k] = generator.nextInt()%4;
         }
         game.readStates(randomIntStates);
-        this.draw(game.getCellsStates(), game.gameBoard.getCanvas());
+        this.draw(game.getCellsStates());
     }
 /*
     @Override

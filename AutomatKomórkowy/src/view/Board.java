@@ -17,8 +17,6 @@ public abstract class Board {
 	private Canvas canvas;
 	private double cellSize;
 
-
-
 	public Board(int columns, int rows, Canvas canvas) {
 		this.columns = columns;
 		this.rows = rows;
@@ -29,22 +27,9 @@ public abstract class Board {
 			this.cellSize = 600. / (double) this.rows;
 	}
 
-	public void blackFill(Canvas canvas) {
-		GraphicsContext canvasGC = canvas.getGraphicsContext2D();
-		for (int i = 0; i < this.getRows(); i++) {
-			for (int j = 0; j < this.getColumns(); j++) {
-				canvasGC.setFill(Color.BLACK);
-				canvasGC.fillRect(j * this.cellSize, this.cellSize * i, this.cellSize, this.cellSize);
-			}
-		}
-	}
 
 	public void setDimension(TextField columns, TextField rows, Game game) {
-		try{
 
-		}catch(Exception e){
-
-		}
 			this.setColumns(Integer.parseInt(columns.getText()));
 			this.setRows(Integer.parseInt(rows.getText()));
 		if (800 / Double.parseDouble(columns.getText()) < 600 / Double.parseDouble(rows.getText()))
@@ -85,9 +70,18 @@ public abstract class Board {
 			color = Color.RED;
 			break;
 		}
-
 		graphicsContext.setFill(color);
 		graphicsContext.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+	}
+
+	public void blackFill(Canvas canvas) {
+		GraphicsContext canvasGC = canvas.getGraphicsContext2D();
+		for (int i = 0; i < this.getRows(); i++) {
+			for (int j = 0; j < this.getColumns(); j++) {
+				canvasGC.setFill(Color.BLACK);
+				canvasGC.fillRect(j * this.cellSize, this.cellSize * i, this.cellSize, this.cellSize);
+			}
+		}
 	}
 
 	public void setPromptForDimensions(TextField columns, TextField rows) {
@@ -112,7 +106,6 @@ public abstract class Board {
 		int newClickedX = (int) (mouseEvent.getX()/ this.getCellSize());
 		int newClickedY = (int) (mouseEvent.getX()/ this.getCellSize());
 
-
 		if(selectionActive && newClickedX == clickedX &&  newClickedY == clickedY){
 			selectionActive = false;
 		}else {
@@ -122,9 +115,9 @@ public abstract class Board {
 			//podświetlenie
 		}
 	}
-	
+
 	//abstract methods
-	public abstract void draw(Cell.State[] cellState, Canvas canvas);
+	public abstract void draw(Cell.State[] cellState);
 	public abstract void randomFill(Game game);
 
 	// Getters and Setters methods

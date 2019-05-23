@@ -5,15 +5,23 @@ import static models.Cell.State.*;
 
 public class WireWorld extends  Game {
 
-    public WireWorld(Board gameBoard) {
-        super(gameBoard);
-        int c = gameBoard.getColumns();
-        int r = gameBoard.getRows();
+    protected wwCell[] cells;
+
+    public WireWorld(Board board) {
+        super(board);
+        this.cells = new wwCell[board.getColumns()*board.getRows()];
+        int c = board.getColumns();
+        int r = board.getRows();
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells[i*r+j] = new golCell(j*gameBoard.getCellSize(), i*gameBoard.getCellSize(), gameBoard.getCellSize(), EMPTY);
+                this.cells[i*r+j] = new wwCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), EMPTY);
             }
         }
+    }
+
+    @Override
+    public void play() {
+
     }
 
    /* public void initCells(Board board, Cell.State[] states){
