@@ -14,14 +14,15 @@ public class GameOfLife extends Game {
     public GameOfLife(Board board) {
 
         super(board);
-        this.cells = new golCell[board.getColumns()*board.getRows()];
+        this.cells = new golCell[numberOfCells];
         int c = board.getColumns();
         int r = board.getRows();
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells[i*r+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), DEAD);
+                this.cells[i*c+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), DEAD);
             }
         }
+
     }
 
     public void setCells(Board board, Cell.State[] states){
@@ -29,19 +30,38 @@ public class GameOfLife extends Game {
         int r = board.getRows();
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells[i*r+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), states[i*r+j]);
+                this.cells[i*c+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), states[i*r+j]);
             }
         }
     }
 
     @Override
     public void readStates(int[] intStates){
-        this.cellsStates = new Cell.State[this.gameBoard.getColumns()*this.gameBoard.getRows()];
-        for(int i = 0; i < this.gameBoard.getColumns()*this.gameBoard.getRows(); i++){
-            if(intStates[i] == 0)
+
+        this.cellsStates = new Cell.State[this.numberOfCells];
+        for(int i = 0; i < this.numberOfCells; i++){
+            if(intStates[i] == 0) {
                 this.cellsStates[i] = DEAD;
-            else if(intStates[i] == 1)
+                this.cells[i].setState(DEAD);
+            }
+            else if(intStates[i] == 1) {
                 this.cellsStates[i] = ALIVE;
+                this.cells[i].setState(ALIVE);
+            }
+        }
+    }
+
+    @Override
+    public void readStatesFromCells(Cell[] cellsStates){
+
+        this.cellsStates = new Cell.State[this.numberOfCells];
+        for(int i = 0; i < this.numberOfCells; i++){
+            if(cellsStates[i].getState() == DEAD) {
+                this.cellsStates[i] = DEAD;
+            }
+            else if(cellsStates[i].getState() == ALIVE) {
+                this.cellsStates[i] = ALIVE;
+            }
         }
     }
 
@@ -54,7 +74,10 @@ public class GameOfLife extends Game {
             for(int j=0; j<8; j++) {
                 if(numbersNextCells[j] > 0 && numbersNextCells[j] < this.numberOfCells )
                     if (this.cells[numbersNextCells[j]].getState() == ALIVE)
+                    {
                         this.cells[i].aliveNextCells++;
+                    }
+
             }
         }
     }
@@ -73,6 +96,7 @@ public class GameOfLife extends Game {
                     this.cells[i].setState(DEAD);
             }
         }
+        this.readStatesFromCells(this.cells);
         this.gameBoard.draw(this.getCellsStates());
     }
 }

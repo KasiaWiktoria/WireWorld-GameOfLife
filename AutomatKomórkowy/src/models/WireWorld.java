@@ -24,6 +24,10 @@ public class WireWorld extends  Game {
 
     }
 
+    @Override
+    public void readStatesFromCells(Cell[] cellsStates) {
+
+    }
    /* public void initCells(Board board, Cell.State[] states){
         states = new Cell.State[gameBoard.getColumns()*gameBoard.getRows()];
         int c = board.getColumns();

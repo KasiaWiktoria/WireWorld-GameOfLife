@@ -30,8 +30,12 @@ public abstract class Board {
 
 	public void setDimension(TextField columns, TextField rows, Game game) {
 
+		try {
 			this.setColumns(Integer.parseInt(columns.getText()));
 			this.setRows(Integer.parseInt(rows.getText()));
+		}catch(NumberFormatException e){
+
+		}
 		if (800 / Double.parseDouble(columns.getText()) < 600 / Double.parseDouble(rows.getText()))
 			this.setCellSize(800. / Double.parseDouble(columns.getText()));
 		else

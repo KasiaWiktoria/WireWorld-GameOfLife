@@ -63,25 +63,37 @@ public class MainController {
 
     public void initialize(){
 
-        //___________________________WireWorld_____________________________________
+        //___________________________WireWorld_______________________________________
         WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
         WireWorld WireWorld = new WireWorld(wwBoard);
 
 
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
-        wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows, WireWorld));
+        wwDimension.setOnAction(e -> {
+            try{
+                wwBoard.setDimension(wwColumns, wwRows, WireWorld);
+            }catch(NumberFormatException wrongDim){
+                System.out.println("Próbujesz ustawić nieprawidłowe wymiary\n");
+            }
+        });
         wwBoardReset.setOnAction(e -> wwBoard.blackFill(wwCanvas));
         wwRandomFill.setOnAction(e -> wwBoard.randomFill(WireWorld));
 
 
-        //___________________________GameOfLife_____________________________________
+        //___________________________GameOfLife_______________________________________
         GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
         GameOfLife GameOfLife = new GameOfLife(golBoard);
 
         golBoard.randomFill(GameOfLife);
         golBoard.setPromptForDimensions(golColumns, golRows);
-        golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows, GameOfLife));
+        golDimension.setOnAction(e -> {
+            try{
+                golBoard.setDimension(golColumns, golRows, GameOfLife);
+            }catch(NumberFormatException wrongDim){
+                System.out.println("Próbujesz ustawić nieprawidłowe wymiary\n");
+            }
+        });
         golBoardReset.setOnAction(e -> golBoard.blackFill(golCanvas));
         golRandomFill.setOnAction(e -> golBoard.randomFill(GameOfLife));
         golNextGeneration.setOnAction(e -> GameOfLife.play());

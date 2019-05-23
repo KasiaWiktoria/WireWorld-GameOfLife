@@ -41,9 +41,9 @@ public class GameOfLifeBoard extends Board {
     public void randomFill(Game game) {
         int numberOfCells = this.getColumns()*this.getRows();
         int [] randomIntStates = new int[numberOfCells];
+        Random generator = new Random();
         for(int k = 0; k < numberOfCells; k++){
-            Random generator = new Random();
-            randomIntStates[k] = generator.nextInt()%2;
+            randomIntStates[k] = Math.abs(generator.nextInt()%2);
         }
         game.readStates(randomIntStates);
         this.draw(game.getCellsStates());

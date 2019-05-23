@@ -5,7 +5,7 @@ import view.Board;
 public abstract class Game {
 
     public Board gameBoard;
-    //protected Cell[] cells;
+    //public Cell[] cells;
     protected Cell.State[] cellsStates;// = new Cell.State[gameBoard.getColumns()*gameBoard.getRows()];
     protected int numberOfCells;
 
@@ -42,6 +42,7 @@ public abstract class Game {
 
     //abstract methods
     public abstract void readStates(int[] intStates);
+    public abstract void readStatesFromCells(Cell[] cellsStates);
 
     //public Cell[] getCells() { return cells; }
     //public void setCells(Cell[] cells) { this.cells = cells; }
