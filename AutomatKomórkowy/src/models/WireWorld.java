@@ -29,16 +29,16 @@ public class WireWorld extends  Game {
 
     @Override
     public void readStates(int[] intStates){
-
+        this.cellsStates = new Cell.State[this.gameBoard.getColumns()*this.gameBoard.getRows()];
         for(int i = 0; i < this.gameBoard.getColumns()*this.gameBoard.getRows(); i++){
             if(intStates[i] == 0)
-                cellsStates[i] = EMPTY;
+                this.cellsStates[i] = EMPTY;
             else if(intStates[i] == 1)
-                cellsStates[i] = HEAD;
+                this.cellsStates[i] = HEAD;
             else if(intStates[i] == 2)
-                cellsStates[i] = TAIL;
+                this.cellsStates[i] = TAIL;
              else if(intStates[i] == 3)
-                cellsStates[i] = CONDUCTOR;
+                this.cellsStates[i] = CONDUCTOR;
         }
     }
 

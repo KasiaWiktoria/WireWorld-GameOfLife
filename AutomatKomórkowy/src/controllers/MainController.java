@@ -27,6 +27,8 @@ public class MainController {
     @FXML
     Button wwBoardReset;
     @FXML
+    Button wwRandomFill;
+    @FXML
     Rectangle tail;
     @FXML
     Rectangle head;
@@ -34,9 +36,6 @@ public class MainController {
     Rectangle conductor;
     @FXML
     Rectangle empty;
-
-    WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
-    WireWorld WireWorld = new WireWorld(wwBoard);
 
     //GameOfLifeBoard
     @FXML
@@ -58,39 +57,24 @@ public class MainController {
     @FXML
     Rectangle white;
 
-    GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
-    GameOfLife GameOfLife = new GameOfLife(golBoard);
-
-    private int clickedX;
-    private int clickedY;
-    private boolean selectionActive = false;
-
-    public void boardClicked(MouseEvent mouseEvent){
-
-        int newClickedX = (int) (mouseEvent.getX()/ wwBoard.getCellSize());
-        int newClickedY = (int) (mouseEvent.getX()/ wwBoard.getCellSize());
-
-
-        if(selectionActive && newClickedX == clickedX &&  newClickedY == clickedY){
-            selectionActive = false;
-        }else {
-            clickedX = newClickedX;
-            clickedY = newClickedY;
-            selectionActive = true;
-            //podświetlenie
-        }
-    }
 
     public void initialize(){
 
         //___________________________WireWorld_____________________________________
+        WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
+        WireWorld WireWorld = new WireWorld(wwBoard);
+
+
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
         wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows, WireWorld));
         wwBoardReset.setOnAction(e -> wwBoard.blackFill(wwCanvas));
+        wwRandomFill.setOnAction(e -> wwBoard.randomFill(WireWorld));
 
 
         //___________________________GameOfLife_____________________________________
+        GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
+        GameOfLife GameOfLife = new GameOfLife(golBoard);
 
         golBoard.randomFill(GameOfLife);
         golBoard.setPromptForDimensions(golColumns, golRows);

@@ -3,6 +3,7 @@ package view;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import models.Cell;
 import models.Game;
@@ -39,18 +40,19 @@ public abstract class Board {
 	}
 
 	public void setDimension(TextField columns, TextField rows, Game game) {
+		try{
 
-		try {
+		}catch(Exception e){
+
+		}
 			this.setColumns(Integer.parseInt(columns.getText()));
 			this.setRows(Integer.parseInt(rows.getText()));
-		} catch (NumberFormatException e) {
-			System.out.println("cos nie tak z wymiarami, zly format\n");
-		}
 		if (800 / Double.parseDouble(columns.getText()) < 600 / Double.parseDouble(rows.getText()))
 			this.setCellSize(800. / Double.parseDouble(columns.getText()));
 		else
 			this.setCellSize(600. / Double.parseDouble(rows.getText()));
 		this.cleanCanvas(game.gameBoard.getCanvas());
+		System.out.println("columns: " + game.gameBoard.getColumns()+" rows: "+ game.gameBoard.getRows()+"\n");
 		this.randomFill(game);
 	}
 
@@ -101,39 +103,37 @@ public abstract class Board {
 		board.drawSingeCell(board.canvas, clickedX, clickedY, newState);
 	}
 
-	// Getters and Setters methods
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
+	private int clickedX;
+	private int clickedY;
+	private boolean selectionActive = false;
 
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
+	public void boardClicked(MouseEvent mouseEvent){
 
-	public void setCanvas(Canvas canvas) {
-		this.canvas = canvas;
-	}
+		int newClickedX = (int) (mouseEvent.getX()/ this.getCellSize());
+		int newClickedY = (int) (mouseEvent.getX()/ this.getCellSize());
 
-	public int getColumns() {
-		return columns;
-	}
 
-	public int getRows() {
-		return rows;
+		if(selectionActive && newClickedX == clickedX &&  newClickedY == clickedY){
+			selectionActive = false;
+		}else {
+			clickedX = newClickedX;
+			clickedY = newClickedY;
+			selectionActive = true;
+			//podświetlenie
+		}
 	}
-
-	public Canvas getCanvas() {
-		return canvas;
-	}
-
-	public double getCellSize() {
-		return cellSize;
-	}
-
-	public void setCellSize(double cellSize) {
-		this.cellSize = cellSize;
-	}
-
+	
+	//abstract methods
 	public abstract void draw(Cell.State[] cellState, Canvas canvas);
 	public abstract void randomFill(Game game);
+
+	// Getters and Setters methods
+	public void setColumns(int columns) { this.columns = columns; }
+	public void setRows(int rows) { this.rows = rows; }
+	public void setCanvas(Canvas canvas) { this.canvas = canvas; }
+	public int getColumns() { return columns; }
+	public int getRows() { return rows; }
+	public Canvas getCanvas() { return canvas; }
+	public double getCellSize() { return cellSize; }
+	public void setCellSize(double cellSize) { this.cellSize = cellSize; }
 }

@@ -33,7 +33,7 @@ public class GameOfLife extends Game {
 
     @Override
     public void readStates(int[] intStates){
-
+        this.cellsStates = new Cell.State[this.gameBoard.getColumns()*this.gameBoard.getRows()];
         for(int i = 0; i < this.gameBoard.getColumns()*this.gameBoard.getRows(); i++){
             if(intStates[i] == 0)
                 this.cellsStates[i] = DEAD;
@@ -46,10 +46,7 @@ public class GameOfLife extends Game {
         int [] randomStates = new int[numberOfCells];
         for(int i = 0; i < numberOfCells; i++){
             Random generator = new Random();
-            if (generator.nextBoolean() == true)
-                randomStates[i] = 1;
-            else
-                randomStates[i] = 0;
+            randomStates[i] = generator.nextInt() % 2;
         }
         return randomStates;
     }

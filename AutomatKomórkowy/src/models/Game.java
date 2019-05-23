@@ -35,7 +35,9 @@ public abstract class Game {
         }
     }
     */
-    public void readStates(int[] intStates){}
+
+    //abstract methods
+    public abstract void readStates(int[] intStates);
 
     public Cell[] getCells() { return cells; }
     public void setCells(Cell[] cells) { this.cells = cells; }

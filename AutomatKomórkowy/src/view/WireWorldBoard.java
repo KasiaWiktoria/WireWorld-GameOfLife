@@ -46,21 +46,34 @@ public class WireWorldBoard extends Board {
     public void draw(Cell.State[] cellState, Canvas canvas){
         GraphicsContext canvasGC = canvas.getGraphicsContext2D();
         canvasGC.setFill(Color.BLACK);
-        for (int i = 0; i < this.getRows(); i++) {
-            for (int j = 0; j < this.getColumns(); j++) {
-                if (cellState[i] == TAIL)
+        int r = this.getRows();
+        int c = this.getColumns();
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                if (cellState[i*r+j] == TAIL)
                     canvasGC.setFill(Color.RED);
-                else if (cellState[i] == HEAD)
+                else if (cellState[i*r+j] == HEAD)
                     canvasGC.setFill(Color.BLUE);
-                else if (cellState[i] == CONDUCTOR)
+                else if (cellState[i*r+j] == CONDUCTOR)
                     canvasGC.setFill(Color.YELLOW);
-                else if (cellState[i] == EMPTY)
+                else if (cellState[i*r+j] == EMPTY)
                     canvasGC.setFill(Color.BLACK);
                 canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
             }
         }
     }
-
+    @Override
+    public void randomFill(Game game) {
+        int numberOfCells = this.getColumns()*this.getRows();
+        int [] randomIntStates = new int[numberOfCells];
+        for(int k = 0; k < numberOfCells; k++){
+            Random generator = new Random();
+            randomIntStates[k] = generator.nextInt()%4;
+        }
+        game.readStates(randomIntStates);
+        this.draw(game.getCellsStates(), game.gameBoard.getCanvas());
+    }
+/*
     @Override
     public void randomFill(Game game) {
         GraphicsContext wwCanvasGC = game.gameBoard.getCanvas().getGraphicsContext2D();
@@ -79,4 +92,5 @@ public class WireWorldBoard extends Board {
             }
         }
     }
+    */
 }
