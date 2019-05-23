@@ -3,7 +3,6 @@ package models;
 public abstract class Cell {
 
     public enum State {
-
         EMPTY,
         HEAD,
         TAIL,
@@ -12,7 +11,6 @@ public abstract class Cell {
         ALIVE,
         DEAD
     }
-
     private double x;
     private double y;
     private double size;
@@ -24,7 +22,6 @@ public abstract class Cell {
         this.size = size;
         this.state = state;
     }
-
 
     public double getX() { return x; }
     public void setX(double x) { this.x = x; }

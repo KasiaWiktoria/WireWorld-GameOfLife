@@ -5,21 +5,40 @@ import static models.Cell.State.*;
 
 public class WireWorld extends  Game {
 
-    public WireWorld(Board gameBoard, Cell[] cells) {
-        super(gameBoard, cells);
+    public WireWorld(Board gameBoard) {
+        super(gameBoard);
+        int c = gameBoard.getColumns();
+        int r = gameBoard.getRows();
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c;j++){
+                this.cells[i*r+j] = new golCell(j*gameBoard.getCellSize(), i*gameBoard.getCellSize(), gameBoard.getCellSize(), EMPTY);
+            }
+        }
     }
 
-    public void readStates(int[] intStates, Game game){
+   /* public void initCells(Board board, Cell.State[] states){
+        states = new Cell.State[gameBoard.getColumns()*gameBoard.getRows()];
+        int c = board.getColumns();
+        int r = board.getRows();
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c;j++){
+                this.cells[i*r+j] = new golCell(j*board.getCellSize(), i*board.getCellSize(), board.getCellSize(), states[i*r+j]);
+            }
+        }
+    }*/
 
-        for(int i = 0; i < game.gameBoard.getColumns()*game.gameBoard.getRows(); i++){
+    @Override
+    public void readStates(int[] intStates){
+
+        for(int i = 0; i < this.gameBoard.getColumns()*this.gameBoard.getRows(); i++){
             if(intStates[i] == 0)
-                cellState[i] = EMPTY;
+                cellsStates[i] = EMPTY;
             else if(intStates[i] == 1)
-                cellState[i] = HEAD;
+                cellsStates[i] = HEAD;
             else if(intStates[i] == 2)
-                cellState[i] = TAIL;
+                cellsStates[i] = TAIL;
              else if(intStates[i] == 3)
-                cellState[i] = CONDUCTOR;
+                cellsStates[i] = CONDUCTOR;
         }
     }
 

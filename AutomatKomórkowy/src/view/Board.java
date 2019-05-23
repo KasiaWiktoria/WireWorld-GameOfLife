@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import models.Cell;
+import models.Game;
 
 import javax.swing.plaf.nimbus.State;
 
@@ -12,8 +13,10 @@ public abstract class Board {
 
 	private int columns;
 	private int rows;
-	Canvas canvas;
+	private Canvas canvas;
 	private double cellSize;
+
+
 
 	public Board(int columns, int rows, Canvas canvas) {
 		this.columns = columns;
@@ -35,9 +38,7 @@ public abstract class Board {
 		}
 	}
 
-	public void randomFill(Canvas canvas) {}
-
-	public void setDimension(TextField columns, TextField rows, Canvas gameCanvas) {
+	public void setDimension(TextField columns, TextField rows, Game game) {
 
 		try {
 			this.setColumns(Integer.parseInt(columns.getText()));
@@ -49,8 +50,8 @@ public abstract class Board {
 			this.setCellSize(800. / Double.parseDouble(columns.getText()));
 		else
 			this.setCellSize(600. / Double.parseDouble(rows.getText()));
-		this.cleanCanvas(gameCanvas);
-		this.randomFill(gameCanvas);
+		this.cleanCanvas(game.gameBoard.getCanvas());
+		this.randomFill(game);
 	}
 
 	public void cleanCanvas(Canvas canvas) {
@@ -132,4 +133,7 @@ public abstract class Board {
 	public void setCellSize(double cellSize) {
 		this.cellSize = cellSize;
 	}
+
+	public abstract void draw(Cell.State[] cellState, Canvas canvas);
+	public abstract void randomFill(Game game);
 }

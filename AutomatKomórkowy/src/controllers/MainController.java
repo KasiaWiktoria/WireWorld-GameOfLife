@@ -5,7 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import view.ColorPicker;
+import javafx.scene.shape.Rectangle;
+import models.GameOfLife;
+import models.WireWorld;
 import view.GameOfLifeBoard;
 import view.WireWorldBoard;
 
@@ -25,9 +27,16 @@ public class MainController {
     @FXML
     Button wwBoardReset;
     @FXML
-    Canvas wwColorPicker;
+    Rectangle tail;
+    @FXML
+    Rectangle head;
+    @FXML
+    Rectangle conductor;
+    @FXML
+    Rectangle empty;
 
     WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
+    WireWorld WireWorld = new WireWorld(wwBoard);
 
     //GameOfLifeBoard
     @FXML
@@ -45,9 +54,12 @@ public class MainController {
     @FXML
     Button golRandomFill;
     @FXML
-    Canvas golColorPicker;
+    Rectangle black;
+    @FXML
+    Rectangle white;
 
     GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
+    GameOfLife GameOfLife = new GameOfLife(golBoard);
 
     private int clickedX;
     private int clickedY;
@@ -72,24 +84,19 @@ public class MainController {
     public void initialize(){
 
         //___________________________WireWorld_____________________________________
-
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
-        wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows, wwCanvas));
+        wwDimension.setOnAction(e -> wwBoard.setDimension(wwColumns, wwRows, WireWorld));
         wwBoardReset.setOnAction(e -> wwBoard.blackFill(wwCanvas));
-        ColorPicker WcolorPicker = new ColorPicker(wwColorPicker);
-        WcolorPicker.colorFill();
 
 
         //___________________________GameOfLife_____________________________________
 
-        golBoard.randomFill(golCanvas);
+        golBoard.randomFill(GameOfLife);
         golBoard.setPromptForDimensions(golColumns, golRows);
-        golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows, golCanvas));
+        golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows, GameOfLife));
         golBoardReset.setOnAction(e -> golBoard.blackFill(golCanvas));
-        golRandomFill.setOnAction(e -> golBoard.randomFill(golCanvas));
-        ColorPicker GoLcolorPicker = new ColorPicker(golColorPicker);
-        GoLcolorPicker.bwFill();
+        golRandomFill.setOnAction(e -> golBoard.randomFill(GameOfLife));
 
     }
 }
