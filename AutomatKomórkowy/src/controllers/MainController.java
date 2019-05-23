@@ -36,6 +36,8 @@ public class MainController {
     Rectangle conductor;
     @FXML
     Rectangle empty;
+    @FXML
+    Button wwNextGeneration;
 
     //GameOfLifeBoard
     @FXML
@@ -56,7 +58,8 @@ public class MainController {
     Rectangle black;
     @FXML
     Rectangle white;
-
+    @FXML
+    Button golNextGeneration;
 
     public void initialize(){
 
@@ -81,6 +84,7 @@ public class MainController {
         golDimension.setOnAction(e -> golBoard.setDimension(golColumns, golRows, GameOfLife));
         golBoardReset.setOnAction(e -> golBoard.blackFill(golCanvas));
         golRandomFill.setOnAction(e -> golBoard.randomFill(GameOfLife));
+        golNextGeneration.setOnAction(e -> GameOfLife.play());
 
     }
 }

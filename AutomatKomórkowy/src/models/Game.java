@@ -5,19 +5,19 @@ import view.Board;
 public abstract class Game {
 
     public Board gameBoard;
-    protected Cell[] cells;
+    //protected Cell[] cells;
     protected Cell.State[] cellsStates;// = new Cell.State[gameBoard.getColumns()*gameBoard.getRows()];
     protected int numberOfCells;
 
     public Game(Board board) {
         this.gameBoard = board;
-        this.cells = new Cell[board.getColumns()*board.getRows()];
+        //this.cells = new Cell[board.getColumns()*board.getRows()];
         this.cellsStates = new Cell.State[board.getColumns()*board.getRows()];
         this.numberOfCells = board.getColumns()*board.getRows();
     }
 
     public abstract void play();
-
+/*
     public void setCells(Cell.State[] states){
         int c = this.gameBoard.getColumns();
         int r = this.gameBoard.getRows();
@@ -28,7 +28,6 @@ public abstract class Game {
         }
     }
 
-/*
     public void setCells(Board board, Cell.State[] states){
         states = new Cell.State[board.getColumns()*board.getRows()];
         int c = board.getColumns();
@@ -44,8 +43,8 @@ public abstract class Game {
     //abstract methods
     public abstract void readStates(int[] intStates);
 
-    public Cell[] getCells() { return cells; }
-    public void setCells(Cell[] cells) { this.cells = cells; }
+    //public Cell[] getCells() { return cells; }
+    //public void setCells(Cell[] cells) { this.cells = cells; }
     public Cell.State[] getCellsStates() { return cellsStates; }
     public void setCellsStates(Cell.State[] cellState) { this.cellsStates = cellState; }
 }

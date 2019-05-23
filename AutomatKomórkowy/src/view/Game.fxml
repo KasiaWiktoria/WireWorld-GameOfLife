@@ -27,7 +27,7 @@
                         <TextField fx:id="wwColumns" layoutX="546.0" layoutY="604.0" prefHeight="31.0" prefWidth="83.0" />
                         <Label layoutX="341.0" layoutY="606.0" prefHeight="28.0" prefWidth="204.0" text="dimensions of the board:" />
                         <Button layoutX="861.0" layoutY="602.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="31.0" text="&lt;" />
-                        <Button layoutX="930.0" layoutY="602.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="&gt;" />
+                        <Button fx:id="wwNextGeneration" layoutX="930.0" layoutY="602.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="&gt;" />
                         <Label layoutX="44.0" layoutY="193.0" text="Edit cell: " />
                         <Button layoutX="36.0" layoutY="60.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="122.0" text="Upload file" />
                         <Button layoutX="40.0" layoutY="604.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Save" />
@@ -57,7 +57,7 @@
                         <Label layoutX="683.0" layoutY="607.0" text="Generations:" />
                         <TextField layoutX="803.0" layoutY="604.0" prefHeight="31.0" prefWidth="38.0" />
                         <Label layoutX="41.0" layoutY="199.0" text="Edit cell:" />
-                        <Button layoutX="841.0" layoutY="604.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="&gt;" />
+                        <Button fx:id="golNextGeneration" layoutX="841.0" layoutY="604.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="&gt;" />
                         <Button layoutX="772.0" layoutY="604.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="&lt;" />
                         <Label layoutX="289.0" layoutY="608.0" prefHeight="22.0" prefWidth="177.0" text="dimensions of the board: " />
                         <TextField fx:id="golColumns" layoutX="471.0" layoutY="604.0" prefHeight="31.0" prefWidth="76.0" />
