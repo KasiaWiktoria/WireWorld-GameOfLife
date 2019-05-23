@@ -25,7 +25,7 @@ public class WireWorld extends  Game {
     }
 
     @Override
-    public void readStatesFromCells(Cell[] cellsStates) {
+    public void readStatesFromCells() {
 
     }
    /* public void initCells(Board board, Cell.State[] states){

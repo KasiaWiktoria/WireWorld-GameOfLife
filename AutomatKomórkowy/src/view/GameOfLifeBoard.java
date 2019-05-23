@@ -46,28 +46,7 @@ public class GameOfLifeBoard extends Board {
             randomIntStates[k] = Math.abs(generator.nextInt()%2);
         }
         game.readStates(randomIntStates);
+        game.readStatesFromCells();
         this.draw(game.getCellsStates());
     }
-
-/*
-    public void randomFill2(Canvas canvas) {
-        Random generator = new Random();
-        GraphicsContext canvasGC = canvas.getGraphicsContext2D();
-        canvasGC.setFill(Color.BLACK);
-        try {
-	        for (int i = 0; i < this.getRows(); i++) {
-                for (int j = 0; j < this.getColumns(); j++) {
-                    if (generator.nextBoolean() == true)
-                        canvasGC.setFill(Color.WHITE);
-                    else
-                        canvasGC.setFill(Color.BLACK);
-                    canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
-                }
-	        }
-        }catch(Exception e) {
-        }
-    }
-*/
-
-
 }

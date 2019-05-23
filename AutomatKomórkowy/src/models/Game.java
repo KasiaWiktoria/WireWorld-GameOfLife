@@ -42,7 +42,7 @@ public abstract class Game {
 
     //abstract methods
     public abstract void readStates(int[] intStates);
-    public abstract void readStatesFromCells(Cell[] cellsStates);
+    public abstract void readStatesFromCells();
 
     //public Cell[] getCells() { return cells; }
     //public void setCells(Cell[] cells) { this.cells = cells; }

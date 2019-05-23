@@ -52,14 +52,14 @@ public class GameOfLife extends Game {
     }
 
     @Override
-    public void readStatesFromCells(Cell[] cellsStates){
+    public void readStatesFromCells(){
 
         this.cellsStates = new Cell.State[this.numberOfCells];
         for(int i = 0; i < this.numberOfCells; i++){
-            if(cellsStates[i].getState() == DEAD) {
+            if(this.cells[i].getState() == DEAD) {
                 this.cellsStates[i] = DEAD;
             }
-            else if(cellsStates[i].getState() == ALIVE) {
+            else if(this.cells[i].getState() == ALIVE) {
                 this.cellsStates[i] = ALIVE;
             }
         }
@@ -77,7 +77,6 @@ public class GameOfLife extends Game {
                     {
                         this.cells[i].aliveNextCells++;
                     }
-
             }
         }
     }
@@ -88,15 +87,21 @@ public class GameOfLife extends Game {
 
         for(int i=0; i <this.numberOfCells; i++){
             if(this.cells[i].getState() == DEAD){
-                if(this.cells[i].aliveNextCells == 3)
+                if(this.cells[i].aliveNextCells == 3) {
                     this.cells[i].setState(ALIVE);
+                    this.cellsStates[i] = ALIVE;
+                }
+
             }
             else if(this.cells[i].getState() == ALIVE){
-                if(this.cells[i].aliveNextCells != 2 && this.cells[i].aliveNextCells != 3)
+                if(this.cells[i].aliveNextCells != 2 && this.cells[i].aliveNextCells != 3) {
                     this.cells[i].setState(DEAD);
+                    this.cellsStates[i] = DEAD;
+                }
             }
         }
-        this.readStatesFromCells(this.cells);
+        this.readStatesFromCells();
         this.gameBoard.draw(this.getCellsStates());
     }
 }
+//dodać do funkcji randomFill zczytywanie stanów z komórek do tablicy stanów
