@@ -8,8 +8,6 @@ import javafx.scene.paint.Color;
 import models.Cell;
 import models.Game;
 
-import javax.swing.plaf.nimbus.State;
-
 public abstract class Board {
 
 	private int columns;

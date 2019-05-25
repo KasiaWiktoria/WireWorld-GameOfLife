@@ -102,4 +102,3 @@ public class GameOfLife extends Game {
         this.gameBoard.draw(this.getCellsStates());
     }
 }
-//dodać do funkcji randomFill zczytywanie stanów z komórek do tablicy stanów
