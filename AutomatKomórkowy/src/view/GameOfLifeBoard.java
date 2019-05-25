@@ -19,7 +19,6 @@ public class GameOfLifeBoard extends Board {
     @Override
     public void draw(Cell.State[] cellState){
         try{
-
             GraphicsContext canvasGC = this.getCanvas().getGraphicsContext2D();
             canvasGC.setFill(Color.BLACK);
             int r = this.getRows();
@@ -40,10 +39,9 @@ public class GameOfLifeBoard extends Board {
 
     @Override
     public void randomFill(Game game) {
-        int numberOfCells = this.getColumns()*this.getRows();
-        int [] randomIntStates = new int[numberOfCells];
+        int [] randomIntStates = new int[game.getNumberOfCells()];
         Random generator = new Random();
-        for(int k = 0; k < numberOfCells; k++){
+        for(int k = 0; k < game.getNumberOfCells(); k++){
             randomIntStates[k] = Math.abs(generator.nextInt()%2);
         }
         game.readStates(randomIntStates);

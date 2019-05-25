@@ -79,6 +79,7 @@ public class MainController {
         });
         wwBoardReset.setOnAction(e -> wwBoard.blackFill(wwCanvas));
         wwRandomFill.setOnAction(e -> wwBoard.randomFill(WireWorld));
+        wwNextGeneration.setOnAction(e -> WireWorld.play());
 
 
         //___________________________GameOfLife_______________________________________

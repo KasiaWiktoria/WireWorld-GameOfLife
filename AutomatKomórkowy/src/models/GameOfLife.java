@@ -24,7 +24,7 @@ public class GameOfLife extends Game {
         }
 
     }
-
+    @Override
     public void setCells(Cell.State[] states){
         int c = this.gameBoard.getColumns();
         int r = this.gameBoard.getRows();
@@ -74,9 +74,7 @@ public class GameOfLife extends Game {
             for(int j=0; j<8; j++) {
                 if(numbersNextCells[j] > 0 && numbersNextCells[j] < this.numberOfCells )
                     if (this.cells[numbersNextCells[j]].getState() == ALIVE)
-                    {
                         this.cells[i].aliveNextCells++;
-                    }
             }
         }
     }
