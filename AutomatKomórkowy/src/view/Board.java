@@ -33,6 +33,7 @@ public abstract class Board {
 		try {
 			this.setColumns(Integer.parseInt(columns.getText()));
 			this.setRows(Integer.parseInt(rows.getText()));
+			game.setNumberOfCells(this.getColumns()*this.getRows());
 		}catch(NumberFormatException e){
 
 		}

@@ -19,15 +19,16 @@ public class GameOfLifeBoard extends Board {
     @Override
     public void draw(Cell.State[] cellState){
         try{
+
             GraphicsContext canvasGC = this.getCanvas().getGraphicsContext2D();
             canvasGC.setFill(Color.BLACK);
             int r = this.getRows();
             int c = this.getColumns();
             for (int i = 0; i < r; i++) {
                 for (int j = 0; j < c; j++) {
-                    if (cellState[i*r+j] == ALIVE)
+                    if (cellState[i*c+j] == ALIVE)
                         canvasGC.setFill(Color.WHITE);
-                    else if (cellState[i*r+j] == DEAD)
+                    else if (cellState[i*c+j] == DEAD)
                         canvasGC.setFill(Color.BLACK);
                     canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
                 }

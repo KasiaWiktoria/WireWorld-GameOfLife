@@ -14,7 +14,6 @@ public class golCell extends Cell {
         this.aliveNextCells =0;
     }
 
-
     public State checkState(){
         if(this.getState() == DEAD){
             if(this.aliveNextCells == 3)

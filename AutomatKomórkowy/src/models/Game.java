@@ -48,4 +48,6 @@ public abstract class Game {
     //public void setCells(Cell[] cells) { this.cells = cells; }
     public Cell.State[] getCellsStates() { return cellsStates; }
     public void setCellsStates(Cell.State[] cellState) { this.cellsStates = cellState; }
+    public int getNumberOfCells() { return numberOfCells; }
+    public void setNumberOfCells(int numberOfCells) { this.numberOfCells = numberOfCells; }
 }
