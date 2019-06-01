@@ -75,6 +75,7 @@ public abstract class Board implements Observator {
 			color = Color.RED;
 			break;
 		}
+		System.out.println("pomalowano wybraną komórkę");
 		graphicsContext.setFill(color);
 		graphicsContext.fillRect(x * game.getCells().getCellSize(), y * game.getCells().getCellSize(), game.getCells().getCellSize(), game.getCells().getCellSize());
 	}
@@ -97,6 +98,7 @@ public abstract class Board implements Observator {
 	public void setCell(Cell.State newState, int clickedX, int clickedY, boolean selectionActive) {
 		if (!selectionActive)
 			return;
+		//USTAWIĆ STAN KOMÓRKI!!
 		drawSingeCell(canvas, clickedX, clickedY, newState);
 	}
 
@@ -104,7 +106,6 @@ public abstract class Board implements Observator {
 	private int clickedY;
 	private boolean selectionActive = false;
 	protected Color selectedColor;
-
 
 
 	public void boardClicked(MouseEvent mouseEvent){
@@ -119,7 +120,7 @@ public abstract class Board implements Observator {
 			System.out.println("Selection active = false");
 			Cell.State cellState = game.getCells().getCellsBoard(game.getCells().checkIndex(clickedX, clickedY)).getState();
 			if(cellState == DEAD)
-				System.out.println("jkhgfdg");
+				System.out.println("OK");
 			drawSingeCell(canvas, (int)(clickedX*game.getCells().getCellSize()), (int)(clickedY*game.getCells().getCellSize()), cellState);
 			*/
 		}else {
@@ -135,25 +136,10 @@ public abstract class Board implements Observator {
 			canvasGC.strokeRect(clickedX*game.getCells().getCellSize()+1, clickedY*game.getCells().getCellSize()+1 , game.getCells().getCellSize()-2, game.getCells().getCellSize()-2);
 
 			//kolorowanie
-			Cell.State cellState;
 
-			if(selectedColor == Color.WHITE)
-				cellState = ALIVE;
-			else if(selectedColor == Color.BLACK)
-				cellState = DEAD;
-			else if(selectedColor == Color.RED)
-				cellState = TAIL;
-			else if(selectedColor == Color.BLUE)
-				cellState = HEAD;
-			else if(selectedColor == Color.YELLOW)
-				cellState = CONDUCTOR;
-			else if(selectedColor == Color.BLACK)
-				cellState = EMPTY;
-
-			//drawSingeCell(canvas, (int)(clickedX*game.getCells().getCellSize()), (int)(clickedY*game.getCells().getCellSize()), cellState);
+			setCell(pickState(), clickedX, clickedY, selectionActive);
 			System.out.println("Wybrano komórkę o współrzędnych x: "+ clickedX + " y: "+clickedY);
 		}
-
 	}
 
 	@Override
@@ -165,6 +151,7 @@ public abstract class Board implements Observator {
 	//abstract methods
 	public abstract void draw(Cell.State[] cellState);
 	public abstract void randomFill(Game game);
+	public abstract Cell.State pickState();
 
 	// Getters and Setters methods
 	public void setCanvas(Canvas canvas) { this.canvas = canvas; }

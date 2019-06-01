@@ -70,4 +70,21 @@ public class WireWorldBoard extends Board {
         game.readStatesFromCells();
         this.draw(game.getCells().getCellsStates());
     }
+
+    @Override
+    public Cell.State pickState(){
+
+        Cell.State cellState = EMPTY;
+
+        if(selectedColor == Color.RED)
+            cellState = TAIL;
+        else if(selectedColor == Color.BLUE)
+            cellState = HEAD;
+        else if(selectedColor == Color.YELLOW)
+            cellState = CONDUCTOR;
+        else if(selectedColor == Color.BLACK)
+            cellState = EMPTY;
+
+        return cellState;
+    }
 }

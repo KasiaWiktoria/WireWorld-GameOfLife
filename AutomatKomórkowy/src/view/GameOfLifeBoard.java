@@ -48,4 +48,19 @@ public class GameOfLifeBoard extends Board {
         game.readStatesFromCells();
         this.draw(game.getCells().getCellsStates());
     }
+
+    @Override
+    public Cell.State pickState(){
+        Cell.State cellState = DEAD;
+
+        if (selectedColor == Color.WHITE)
+            cellState = ALIVE;
+        else if (selectedColor == Color.BLACK)
+            cellState = DEAD;
+
+
+        return cellState;
+    }
+
+
 }

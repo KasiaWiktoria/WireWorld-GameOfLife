@@ -19,17 +19,6 @@ public abstract class Cells {
         this.cellsBoard = new Cell[numberOfCells];
     }
 
-    public int checkIndex(int x, int y){
-        System.out.println("Współrzędne testowanego punktu: x: " + x + " y: " + y);
-        //System.out.println("Współrzędne punktu 0, 0 : x: " + cellsBoard[0].getX() + " y: " + cellsBoard[0].getY());
-        for(int i = 0; i<this.getNumberOfCells(); i++){
-            if(cellsBoard[i].getX()/cellsBoard[i].getSize() == x && cellsBoard[i].getY()/cellsBoard[i].getSize() == y)
-                System.out.println("Znaleziono punkt; index = " + i);
-                return i;
-        }
-        System.out.println("Brak punktu o danych współrzędnych");
-        return -1;
-    }
 
     //Getter and Setter methods
     public int getRows() { return rows; }
