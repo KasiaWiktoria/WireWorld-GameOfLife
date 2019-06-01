@@ -12,8 +12,8 @@ import static models.Cell.State.*;
 
 public class WireWorldBoard extends Board {
 
-    public WireWorldBoard(int columns, int rows, Canvas canvas) {
-        super(columns, rows, canvas);
+    public WireWorldBoard(Game game, Canvas canvas) {
+        super(game, canvas);
     }
 
     public void drawSingeCell(Canvas canvas, int x, int y, Cell.State state) {
@@ -36,15 +36,15 @@ public class WireWorldBoard extends Board {
                 break;
         }
         graphicsContext.setFill(color);
-        graphicsContext.fillRect(x*this.getCellSize(), y*this.getCellSize(), this.getCellSize(), this.getCellSize());
+        graphicsContext.fillRect(x*game.getCells().getCellSize(), y*game.getCells().getCellSize(), game.getCells().getCellSize(), game.getCells().getCellSize());
     }
 
     @Override
     public void draw(Cell.State[] cellState){
         GraphicsContext canvasGC = this.getCanvas().getGraphicsContext2D();
         canvasGC.setFill(Color.BLACK);
-        int r = this.getRows();
-        int c = this.getColumns();
+        int r = game.getCells().getRows();
+        int c = game.getCells().getColumns();
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
                 if (cellState[i*c+j] == TAIL)
@@ -55,19 +55,19 @@ public class WireWorldBoard extends Board {
                     canvasGC.setFill(Color.YELLOW);
                 else if (cellState[i*c+j] == EMPTY)
                     canvasGC.setFill(Color.BLACK);
-                canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
+                canvasGC.fillRect(j * game.getCells().getCellSize(), game.getCells().getCellSize() * i, game.getCells().getCellSize(), game.getCells().getCellSize());
             }
         }
     }
     @Override
     public void randomFill(Game game) {
-        int [] randomIntStates = new int[game.getNumberOfCells()];
+        int [] randomIntStates = new int[game.getCells().getNumberOfCells()];
         Random generator = new Random();
-        for(int k = 0; k < game.getNumberOfCells(); k++){
+        for(int k = 0; k < game.getCells().getNumberOfCells(); k++){
             randomIntStates[k] = Math.abs(generator.nextInt()%4);
         }
         game.readStates(randomIntStates);
         game.readStatesFromCells();
-        this.draw(game.getCellsStates());
+        this.draw(game.getCells().getCellsStates());
     }
 }

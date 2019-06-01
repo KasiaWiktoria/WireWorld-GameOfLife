@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Cell {
+public class Cell {
 
     public enum State {
         EMPTY,

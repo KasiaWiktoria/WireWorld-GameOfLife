@@ -1,15 +1,17 @@
 package controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import models.GameOfLife;
-import models.WireWorld;
+import models.*;
 import view.GameOfLifeBoard;
 import view.WireWorldBoard;
+import view.Board;
 
 public class MainController {
 
@@ -64,15 +66,16 @@ public class MainController {
     public void initialize(){
 
         //___________________________WireWorld_______________________________________
-        WireWorldBoard wwBoard  = new WireWorldBoard(64,48, wwCanvas);
-        WireWorld WireWorld = new WireWorld(wwBoard);
-
+        wwCells wwCells = new wwCells(64,48);
+        WireWorld WireWorld = new WireWorld(wwCells);
+        WireWorldBoard wwBoard  = new WireWorldBoard(WireWorld, wwCanvas);
+        WireWorld.subscribe(wwBoard);
 
         wwBoard.blackFill(wwCanvas);
         wwBoard.setPromptForDimensions(wwColumns, wwRows);
         wwDimension.setOnAction(e -> {
             try{
-                wwBoard.setDimension(wwColumns, wwRows, WireWorld);
+                wwBoard.setDimension(wwColumns, wwRows);
             }catch(NumberFormatException wrongDim){
                 System.out.println("Próbujesz ustawić nieprawidłowe wymiary\n");
             }
@@ -81,16 +84,19 @@ public class MainController {
         wwRandomFill.setOnAction(e -> wwBoard.randomFill(WireWorld));
         wwNextGeneration.setOnAction(e -> WireWorld.play());
 
+        wwBoard.getCanvas().setOnMouseClicked(wwBoard::boardClicked);
 
         //___________________________GameOfLife_______________________________________
-        GameOfLifeBoard golBoard = new GameOfLifeBoard(32,24, golCanvas);
-        GameOfLife GameOfLife = new GameOfLife(golBoard);
+        golCells golCells = new golCells(32,24);
+        GameOfLife GameOfLife = new GameOfLife(golCells);
+        GameOfLifeBoard golBoard = new GameOfLifeBoard(GameOfLife, golCanvas);
+        GameOfLife.subscribe(golBoard);
 
         golBoard.randomFill(GameOfLife);
         golBoard.setPromptForDimensions(golColumns, golRows);
         golDimension.setOnAction(e -> {
             try{
-                golBoard.setDimension(golColumns, golRows, GameOfLife);
+                golBoard.setDimension(golColumns, golRows);
             }catch(NumberFormatException wrongDim){
                 System.out.println("Próbujesz ustawić nieprawidłowe wymiary\n");
             }
@@ -99,5 +105,16 @@ public class MainController {
         golRandomFill.setOnAction(e -> golBoard.randomFill(GameOfLife));
         golNextGeneration.setOnAction(e -> GameOfLife.play());
 
+        //color select
+        Rectangle[] colorPickers = new Rectangle []{white, black, empty, head, tail, conductor};
+        for (Rectangle colorRect : colorPickers)
+        colorRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                golBoard.setSelectedColor((Color)colorRect.getFill());
+            }
+        });
+
+        golBoard.getCanvas().setOnMouseClicked(golBoard::boardClicked);
     }
 }

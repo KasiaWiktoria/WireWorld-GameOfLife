@@ -1,28 +1,31 @@
 package models;
 
-import view.Board;
+import static models.Cell.State.DEAD;
 
-public abstract class Game {
+public abstract class Game extends Observable {
 
-    public Board gameBoard;
-    protected Cell.State[] cellsStates;
-    protected int numberOfCells;
+    protected Cells cells;
+    public void initCellsBoard(){
+        int c = this.cells.columns;
+        int r = this.cells.rows;
+        for(int i = 0; i < r; i++){
+            for(int j = 0; j < c;j++){
+                this.cells.cellsBoard[i*c+j] = new Cell(j*this.cells.cellSize, i*cells.cellSize, this.cells.cellSize, DEAD);
+            }
+        }
+    }
 
-    public Game(Board board) {
-        this.gameBoard = board;
-        this.cellsStates = new Cell.State[board.getColumns()*board.getRows()];
-        this.numberOfCells = board.getColumns()*board.getRows();
+    public Game(Cells cells) {
+        this.cells = cells;
     }
 
     //abstract methods
     public abstract void play();
     public abstract void readStates(int[] intStates);
     public abstract void readStatesFromCells();
-    public abstract void setCells(Cell.State[] states);
+    public abstract void setCellsBoard(Cell.State[] states);
 
     //getters and setters methods
-    public Cell.State[] getCellsStates() { return cellsStates; }
-    public void setCellsStates(Cell.State[] cellState) { this.cellsStates = cellState; }
-    public int getNumberOfCells() { return numberOfCells; }
-    public void setNumberOfCells(int numberOfCells) { this.numberOfCells = numberOfCells; }
+    public Cells getCells() { return cells; }
+    public void setCells(Cells cells) { this.cells = cells; }
 }

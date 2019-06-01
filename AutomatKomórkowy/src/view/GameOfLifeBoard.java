@@ -14,22 +14,22 @@ import static models.Cell.State.DEAD;
 
 public class GameOfLifeBoard extends Board {
 
-    public GameOfLifeBoard(int columns, int rows, Canvas canvas) { super(columns, rows, canvas); }
+    public GameOfLifeBoard(Game game, Canvas canvas) { super(game, canvas); }
 
     @Override
     public void draw(Cell.State[] cellState){
         try{
             GraphicsContext canvasGC = this.getCanvas().getGraphicsContext2D();
             canvasGC.setFill(Color.BLACK);
-            int r = this.getRows();
-            int c = this.getColumns();
+            int r = game.getCells().getRows();
+            int c = game.getCells().getColumns();
             for (int i = 0; i < r; i++) {
                 for (int j = 0; j < c; j++) {
                     if (cellState[i*c+j] == ALIVE)
                         canvasGC.setFill(Color.WHITE);
                     else if (cellState[i*c+j] == DEAD)
                         canvasGC.setFill(Color.BLACK);
-                    canvasGC.fillRect(j * this.getCellSize(), this.getCellSize() * i, this.getCellSize(), this.getCellSize());
+                    canvasGC.fillRect(j * game.getCells().getCellSize(), game.getCells().getCellSize() * i, game.getCells().getCellSize(), game.getCells().getCellSize());
                 }
             }
         }catch(NullPointerException e){
@@ -39,13 +39,13 @@ public class GameOfLifeBoard extends Board {
 
     @Override
     public void randomFill(Game game) {
-        int [] randomIntStates = new int[game.getNumberOfCells()];
+        int [] randomIntStates = new int[game.getCells().getNumberOfCells()];
         Random generator = new Random();
-        for(int k = 0; k < game.getNumberOfCells(); k++){
+        for(int k = 0; k < game.getCells().getNumberOfCells(); k++){
             randomIntStates[k] = Math.abs(generator.nextInt()%2);
         }
         game.readStates(randomIntStates);
         game.readStatesFromCells();
-        this.draw(game.getCellsStates());
+        this.draw(game.getCells().getCellsStates());
     }
 }
