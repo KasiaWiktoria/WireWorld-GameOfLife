@@ -31,4 +31,5 @@ public class Cell {
     public void setSize(double size) { this.size = size; }
     public State getState() { return state; }
     public void setState(State state) { this.state = state; }
+
 }

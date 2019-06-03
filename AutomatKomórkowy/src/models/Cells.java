@@ -34,4 +34,5 @@ public abstract class Cells {
     public Cell[] getCellsBoard() { return cellsBoard; }
     public Cell getCellsBoard(int i) { return cellsBoard[i]; }
     public void setCellsBoard(Cell[] cellsBoard) { this.cellsBoard = cellsBoard; }
+    public Cell checkIndex(int a,int b) {  return cellsBoard[(a+1)*(b+1)]; }
 }
