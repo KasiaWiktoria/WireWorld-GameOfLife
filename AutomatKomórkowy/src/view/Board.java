@@ -12,6 +12,7 @@ import models.Game;
 import models.Observator;
 
 import java.awt.*;
+import java.util.Random;
 
 import static models.Cell.State.*;
 
@@ -46,6 +47,9 @@ public abstract class Board implements Observator {
 		this.randomFill(this.game);
 	}
 
+	
+	
+	
 	public void cleanCanvas(Canvas canvas) {
 		GraphicsContext canvasGC = canvas.getGraphicsContext2D();
 		for (int i = 0; i < this.game.getCells().getRows(); i++) {
@@ -56,6 +60,9 @@ public abstract class Board implements Observator {
 		}
 	}
 
+	
+	
+	
 	public void drawSingeCell(Canvas canvas, int x, int y, Cell.State state) {
 		GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 
@@ -74,11 +81,19 @@ public abstract class Board implements Observator {
 		case TAIL:
 			color = Color.RED;
 			break;
+		case DEAD:
+			color = Color.BLACK;
+			break;
+		case ALIVE:
+			color = Color.WHITE;
+			break;
 		}
 		System.out.println("pomalowano wybraną komórkę");
 		graphicsContext.setFill(color);
 		graphicsContext.fillRect(x * game.getCells().getCellSize(), y * game.getCells().getCellSize(), game.getCells().getCellSize(), game.getCells().getCellSize());
 	}
+	
+	
 
 	public void blackFill(Canvas canvas) {
 		GraphicsContext canvasGC = canvas.getGraphicsContext2D();
@@ -89,19 +104,27 @@ public abstract class Board implements Observator {
 			}
 		}
 	}
-
+	
+	
 	public void setPromptForDimensions(TextField columns, TextField rows) {
 		columns.setPromptText("columns");
 		rows.setPromptText("rows");
 	}
-
+	
+	
+	//ustawia stan komorki
+	
 	public void setCell(Cell.State newState, int clickedX, int clickedY, boolean selectionActive) {
 		if (!selectionActive)
 			return;
-		//USTAWIĆ STAN KOMÓRKI!!
+		//USTAWIĆ STAN KOM
 		drawSingeCell(canvas, clickedX, clickedY, newState);
 	}
 
+	
+	
+	
+	
 	private int clickedX;
 	private int clickedY;
 	private boolean selectionActive = false;
@@ -116,9 +139,9 @@ public abstract class Board implements Observator {
 
 		if(selectionActive && newClickedX == clickedX &&  newClickedY == clickedY){
 			selectionActive = false;
-			/*
+			
 			System.out.println("Selection active = false");
-			Cell.State cellState = game.getCells().getCellsBoard(game.getCells().checkIndex(clickedX, clickedY)).getState();
+			/*Cell.State cellState = game.getCells().getCellsBoard(game.getCells().checkIndex(clickedX, clickedY)).getState();
 			if(cellState == DEAD)
 				System.out.println("OK");
 			drawSingeCell(canvas, (int)(clickedX*game.getCells().getCellSize()), (int)(clickedY*game.getCells().getCellSize()), cellState);
@@ -131,9 +154,12 @@ public abstract class Board implements Observator {
 			canvasGC.setStroke(Color.GREEN);
 			canvasGC.setFill(Color.TRANSPARENT);
 			canvasGC.setLineWidth(2);
+			
+	
 			//double strokeX = game.getCells().getCellsBoard(game.getCells().checkIndex(mouseEvent.getX(), mouseEvent.getY())).getX();
 			//double strokeY = game.getCells().getCellsBoard(game.getCells().checkIndex(mouseEvent.getX(), mouseEvent.getY())).getY();
-			canvasGC.strokeRect(clickedX*game.getCells().getCellSize()+1, clickedY*game.getCells().getCellSize()+1 , game.getCells().getCellSize()-2, game.getCells().getCellSize()-2);
+			
+			//?canvasGC.strokeRect(clickedX*game.getCells().getCellSize()+1, clickedY*game.getCells().getCellSize()+1 , game.getCells().getCellSize()-2, game.getCells().getCellSize()-2);
 
 			//kolorowanie
 
@@ -160,3 +186,6 @@ public abstract class Board implements Observator {
 	public void setSelectedColor(Color selectedColor) { this.selectedColor = selectedColor; }
 
 }
+
+
+
