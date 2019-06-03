@@ -51,14 +51,17 @@ public class GameOfLifeBoard extends Board {
 
     @Override
     public Cell.State pickState(){
-        Cell.State cellState = DEAD;
+        Cell.State cellState = ALIVE;
 
-        if (selectedColor == Color.WHITE)
+        if (selectedColor == Color.WHITE) {
+        	System.out.println("a");
             cellState = ALIVE;
-        else if (selectedColor == Color.BLACK)
+            }
+        else if (selectedColor == Color.BLACK) {
+        	 System.out.println("b");
             cellState = DEAD;
-
-
+          
+        }
         return cellState;
     }
 
