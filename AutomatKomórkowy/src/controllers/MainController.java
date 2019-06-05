@@ -112,6 +112,8 @@ public class MainController {
             @Override
             public void handle(MouseEvent t) {
                 golBoard.setSelectedColor((Color)colorRect.getFill());
+                ww.Board.setSelectedColor((Color)colorRect.getFill());
+
                 if(golBoard.getSelectedColor() == Color.WHITE)
                     System.out.println("Wybrano kolor biały");
             }
