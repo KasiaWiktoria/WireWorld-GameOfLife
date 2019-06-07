@@ -1,0 +1,412 @@
+\documentclass[10pt, oneside]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{polski}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+
+\title{Dokumentacja końcowa programu WireWorld}
+\author{Danuta Stawiarz, Katarzyna Stankiewicz}
+\date{20 maja 2019 r.}
+
+\pagestyle{fancy}
+\fancyhf{} 
+\lhead{}
+\rhead{} 
+	
+\rfoot{
+\begin{center} Strona \thepage \hspace{1pt} z \pageref{LastPage}
+\end{center}
+}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage	
+
+
+\section {Informacje ogólne}
+
+W projekcie zastosowany będzie wzorzec MVC (Model View Controller). W projekcie wprowadzony został przejrzysty przydział poszczególnych plików do odpowiednich pakietów. 
+W pakiecie models znajdują się  klasy, które służą do wykonywania wszelkich operacji związanych z implementacją funkcjonalności automatu komórkowego.
+W pakiecie View znajdują się wszystkie pliki .fxml odpowiedzialne za wygląd automatu komórkowego oraz pliki odpowiedzialne za wyświetlanie interfejsu.
+W pakiecie controllers będą zawarte kontrolery, służące do obsługi żądań użytkownika.
+
+\subsection {Działanie programu}
+\begin {enumerate} 
+	\item \textbf{Wariant Wireworld}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=7cm]1
+\caption{Ekran startowy aplikacji}
+\label{fig:obrazek k}
+\end{figure}
+
+W celu zmiany wymiarów planszy użytkownik wprowadza oczekiwane wymiary oraz naciska "Set"
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]2
+\caption{Zmiana wymiarów planszy przez użytkownia}
+\label{fig:obrazek k2}
+\end{figure}
+
+
+W celu  wypełnienia planszy według własnych oczekiwań użytkownik wybiera kolor z palety dostępnej po lewej stronie planszy oraz wybiera komórkę na planszy.
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]3
+\caption{Wypełnienie planszy}
+\label{fig:obrazek k2}
+\end{figure}
+
+W celu wybrania losowego ustawienia komórek użytkownik naciska "Random Fill".
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]4
+\caption{Losowe wypełnienie planszy}
+\label{fig:obrazek k2}
+\end{figure}
+
+
+
+W celu zresetowania planszy  użytkownik naciska "Reset Board"
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]6
+\caption{Resetowanie planszy}
+\label{fig:obrazek k2}
+\end{figure}
+
+
+	\item \textbf{Wariant Game of Life}
+\newline
+Zasady obsługi nie różnią się od obsługi wariantu gry Wireworld.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]5
+\caption{Ekran startowy}
+\label{fig:obrazek k2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]7
+\caption{Wypełnianie planszy przez użytkownia}
+\label{fig:obrazek k2}
+\end{figure}
+
+\end{enumerate}
+
+
+
+\section{Schemat działania programu}
+Program reaguje bezpośrednio na komendy użytkownika. 
+
+\section {Diagram klas}
+
+\begin{enumerate}
+\item Uruchomienie aplikacji - ekran startowy. Fragment przedstawiający siatkę komórek jest czarny -  komórki domyślnie są martwe lub puste w zależności od wariantu gry
+\item Reakcje na bezpośrednie działania użytkownika:
+	\begin {itemize}
+	\item Start -  naciśnięcie tego przycisku uruchomi symulację, 
+	\item Generations - w przypadku naciśnięcia którejś ze strzałek nastąpi przeprowadzenie generacji. Wynik symulacji zostanie wyświetlony na ekranie aplikacji,
+	\item Board reset - nastąpi zresetowanie tablicy reprezentującej siatkę- na ekranie pojawi się czarna tablica.
+	\item Upload file - spowoduje wczytanie siatki ze stanami poszczególnych komórek i wyświetlenie jej na ekranie
+	\item Random fill -  spowoduje wypełnienie siatki looswymi wartościami,
+	\item Save - spowoduje zapis stanu tablicy do pliku
+	\item Set - wprowadzenie w pola odpowiednich liczb ustawi wybrany rozmiar siatki komórek
+	\item Edit - po kliknięciu wybraną komórkę na  planszy, użytkownik zmienia jej stan oraz reprezentację na planszy (kolor). W celu wybrania koloru użytkownik wybiera go z palety dostępnej na ekranie aplikacji.
+\end{itemize}
+\end {enumerate}
+
+\section {Zmiany w stosunku do specyfikacji funkcjonalnej oraz  implementacyjnej }
+W zakładanym wyglądzie oraz  aspekcie funkcjinalnym programu nie zaszły znaczące zmiany.Zmianie uległ kod projektu. Moduły uległy znacznemu rozszerzeniu, w celu ułatwienia pracy nad projektem i zachowaniu spójności, zmianie uległy nazwy klas. Projekt został podzielony zgodnie z modelem Model-View-Controller. W module Model, poza klasami, których istnienie przewidywała specyfikacja implementacyjna pojawiły się klasy reprezentujące tablicę komórek (Cellls) oraz klasy dziedziczące po niej. W module View znalazły się dodatkowe klasy odpowiadające za wygląd aplikacji, jest to głównie klasa Board, która pierwotnie miała być elementem modułu Model. Pośrednio jej rolę przejęła klasa Cells, co umożliwiło rozdzielenie dwóch modułów.
+
+\section {Opis modułów i klas}
+Program składa się z trzech głównych modułów odpowiedzialnych za prawidłowe działanie programu. Są to
+\begin {itemize}
+\item Models - komputerowa reprezentacja gry, odpowiada za przeprowadzanie kolejnych generacji, jak i całej symulacji
+\item Controllers - odpowiada za odbiór, przetworzenie oraz analizę danych wejściowych od użytkownika, po przetworzeniu danych zmienia stan modelu oraz odświeża widok
+\item View - moduł odpowiadający za apsekt wizualny gry, a także reakcję na działana użytkownika (przekazuje informację o przypadkach naciśnięcia poszczególnych przycisków)
+\end{itemize}
+
+\subsection {Moduł Model}
+Moduł ten odpowiada za poprawne przeprowadzenie symualcji. Zawiera klasy reprezentujące grę i zawierające w sobie obiekty klas będących składowymi innych modułów.
+Klasy:
+
+\begin{enumerate}
+\item \textbf{Abstract Class Game extends Observable()} - klasa ta stanowi podstawę dla klas dziedziczących po niej - Wireworld oraz Life, związane jest to z wariantem gry, który wybierze 										użytkownik. Klasa ta dziedziczy po klasie Observable.
+					Elementami tej klasy są:
+	\begin {itemize}
+	\item protected Cells cells - jest to obiekt klasy, która reprezentuje wszystkie komórki zawarte na planszy ( siatkę komórek)
+	\end {itemize}
+
+
+	Główne metody tej klasy to:
+	\begin {itemize} \item Metody abstrakcyjne:
+	\begin{itemize}
+	\item public void initCellsBoard() - metoda przypisująca dane do obiektu cellsBoard, który jest elementem klasy cells, która to stanowi element klasy Game
+	\item public abstract void play() - przeprowadza symulację generacji zgodnie z zasadami określonymiprzez wariant gry
+	\item public abstract void  readStates(int []) - metoda odczytująca stany poszczególnych komórek na podstawie ich reprezentacji w tablicy typu int oraz odzwierciedlająca stany komórek w jednym z obiektów tej klasy - CellsBoard
+	\item public abstract void readStatesFromCells() - metoda odczytująca stany komórek z tablicy obiektów typu CellState oraz odzwierciedlająca je w obiekcie tej klasy o nazwie  cellls
+	\item public abstract void setCellsBoard(Cell.State[]) - metoda tworząca tablicę obiektów typu Cell będącej zmienną tej klasy, na podstawie przekazanej tablicy typu Cell.State[]
+	\item public abstract class play() - metoda odpowiadająca za przeprowadzenie symulacji generacji komórek, a więc za właściwą funckjonalność programu. W klasach dziedziczących jest implementowana w zależności od zasad gry.
+	\end {itemize}
+
+	\item Metody typu "get" i "set":
+	\begin{itemize}
+	\item public  Cells getCells ()
+	\item public  void setCells (Cells cells) 
+	\end{itemize}
+	\end{itemize}
+	
+
+	Klasy dziedziczące po klasie Game reprezentują poszczególne warianty gry, które różnią się miiędzy sobą głównie wartościami zmiennych reprezentującymi stan komórek oraz metodami odpowiadającymi za przeprowadzenie symulacji (metoda play() oraz metody, z których korzysta). Klasy dziedziczące po klasie Game to:
+\begin {enumerate}
+\item   \textbf {public class GameOfLife extends Game} - klasa ta jest pochodną klasy Game.Elementami tej klasy są:	
+	\begin{itemize}
+	\item public golCells Cells,
+	\end {itemize}
+
+	Klasa zawiera następujące metody:
+	\begin {itemize}
+	\item 	public GameOfLife (golCells cellls) - konstruktor klasy
+	\item  public void countAliveNextCells() - metoda charakterystyczna dla tego wariantu gry, zlicza ilość obiektów typu Cell o stanie "Alive" w najbliższym sąsiedztwie wybranego obiektu na siatce obiektów typu Cell
+	\item  Override public void setCellsBoard(Cell.State[ ] states)
+	\item  Override public void readStates(int[ ] intStates)
+	\item  Override public void readStatesFromCells()
+	\item  Override public void play()
+	\end{itemize}
+
+\item  \textbf{ public class Wireworld extends Game} 
+					Elementami tej klasy są:
+	\begin {itemize}
+	\item protected Cells cells
+	\end {itemize}
+
+
+	\begin{itemize}
+	\item public void initCellsBoard() - metoda przypisująca dane do obiektu cellsBoard, który jest elementem klasy cells, która to stanowi element klasy Game;
+	\item public abstract void play() - przeprowadza symulację generacji zgodnie z zasadami określonymi przez wariant gry; 
+	\item public abstract void  readStates(int []) - 
+	\item public abstract void readStatesFromCells()
+	\item public abstract void setCellsBoard(Cell.State[]) 
+
+	\item public  Cells getCelsl ()
+	\item public  void setCelsl (Cells cells) 
+
+	\end{itemize}
+\end {enumerate}
+
+	
+\item  \textbf{public abstract class Cell} - klasa reprezentująca pojedynczą komórkę w  grze, a więc najmniejszy podstawowy obiekt bedący składowymi takich klas jak Cells oraz Game. W dalszej częsci opisu obiekty tej klasy będą nazywane komórkami. Zawiera elementy:
+	\begin {itemize}
+	\item private  int x - współrzędna określająca położenie x komórki na planszy,
+	\item private  int y - współrzędna określająca położenie y komórki na planszy,
+	\item private double size - określa rozmiar komórki,
+	\item private  State state - określa stan komórki, 
+	\item public enum State - zawarte są tu wszystkie możliwe wartości stanu komórek dla obu wariantów gry
+	\end {itemize}
+
+Główne metody tej klasy to metody typu "get" oraz "set". Są  to:
+
+	\begin {itemize}
+	\item public void seState(State state)
+	\item public State getState()
+	\item public void setSize(double)
+	\item public double getSize()
+	\item public double getX()
+	\item public double getY()
+	\item public void setX(double)
+	\item public void setY(double)
+	\end {itemize}
+
+
+Klasy dziedziczące po klasie Cell:
+	\begin {enumerate}
+	\item \textbf {public class golCell extends Cell}  - klasa dziedzicząca po klasie Cell, poza elementami właściwymi dla tej klasy, zawiera także zmienne:
+		\begin {itemize}
+		\item protected int aliveNextCells - zmienna charakterystyczna dla tego wariantu gry, odzwierciedla ilość obiektów o stanie "Alive" w siatce obiektów typu Cell dla wybranego obiektu
+		\end {itemize}
+		Inne metody tej klasy:
+		\begin {itemize}
+		\item public State checkState() - sprawdza wartość zmiennej State, na podstawie  uzyskanych danych 
+		\end {itemize}
+	\item \textbf {public class wwCell extends Cell}- klasa dziedzicząca po klasie Cell, poza elementami właściwymi dla tej klasy, zawiera także zmienne:
+		\begin {itemize}
+		\item protected int headsNext
+		\end {itemize}
+\end {enumerate}
+
+
+
+\item  \textbf{public abstract class Cells}
+	 klasa abstrakcyjna reprezentująca siatkę komórek gry, zależenie od jej wariantu. Zawiera elementy:
+	\begin {itemize}
+	\item    protected int rows - wymiar x siatki komórek,
+	\item protected int  columns - wymiar y siatki komórek,
+   	\item  protected double cellSize - wielkość pojedynczej komórki w siatce (zmienna wraz ze zmiennymi wymiarami siatki),
+   	\item  protected Cell.State[] cellsStates - tablica typu Cell.State reprezentująca stany poszczególnych komórek w siatce
+   	\item protected int numberOfCells- ilość komórek w siatce,
+	\item protected Cell[] cellsBoard - tablica obiektów typu Cell, a więc  reprezentująca siatkę
+	\end{itemize}
+
+
+
+Główne metody tej klasy to metody typu "get" oraz "set":
+
+	\begin {itemize}
+	 \item   public int getRows (),
+   	\item  public void setRows(int),
+   	\item  public int getColumns(),
+   	\item  public void setColumns(int),
+   	\item  public double getCellSize(),
+   	\item  public void setCellSize(double),
+   	\item public Cell.State[] getCellsStates(),
+    	\item public void setCellsStates(Cell.State[),
+   	\item  public int getNumberOfCells(),
+    	\item public void setNumberOfCells(int),
+    	\item public Cell[] getCellsBoard(),
+   	\item  public Cell getCellsBoard(int),
+	\item public void setCellsBoard(Cell[]),
+	\end {itemize}
+
+
+Klasy dziedziczące po tej klasie:
+\begin {enumerate}
+	\item \textbf golCells - klasa dla wariantu gry Game of Life,
+	\item \textbf wwCells - klasa dla wariantu gry Wireworld.
+\end {enumerate}
+
+\item  \textbf{public abstract class Observabler} - klasa zawiera metody:
+	\begin {itemize}
+	\item public void subscribe(Observatorr),
+	\item public void notifyObservators().
+	\end {itemize}
+
+\item  \textbf{public interface Observator}
+
+\end{enumerate}
+
+
+
+
+\subsection {Moduł Controller}
+Klasa ta odpowiada za właściwą komunikację pomiędzy interfejsem użytkownika (moduł View) a właściwym działaniem programu (Moduł Model).
+			Główną składową tej klasy jest metoda \textbf {Initialize()} ,  w której następuje inicjalizacja obiektów reprezentuących obie rozgrywki gry oraz ich składowych. Metoda ta wywołuje zarządza działaniami programu na podstawie działań użytkownika - odbiera bodźce i na ich podstawie wywołuje metody niezbędne do przeprowadzenia prawidłowej reakcji programu.
+
+\subsection {Moduł View}
+\begin {enumerate}
+	\item\textbf { public abstract class Board} - klasa abstrakcyjna implementuje interfejs Observator. Zawiera metody umożliwiające zauważanie, przekazanie do programu i  analizę działań 				użytkownik oraz poźniejsze zmiany w interfejsie aplikacji. Klasa zawiera zmienne:
+	\begin {itemize} 
+	\item protected Game game - obecność tego obiektu tej klasy umożliwia przekazywanie oraz modyfikację danych między modułami View a Model,
+	\item protected Canvas canvas - obiekt odpowiadający stricte za wygląd planszy,
+	\item private int clickedX - współrzędna x miejsca na planszy, w którym wykryto działanie użytkownika,
+	\item private int clickedY współrzędna y miejsca na planszy, w którym wykryto działanie użytkownika,
+	\item private boolean selectionActive,
+	\item protected Color selectedColor- zmienna określająca kolor.
+	\end{itemize}
+
+	Metody klasy:
+\begin {itemize}
+	\item metody:
+	\begin{itemize}
+	\item public Board(Gam, Canvas) - konstruktor klasy
+	\item public void setDimension(TextField, TextField) - metoda obsługująca działanie użytkownika polegające na wyborze wymiarów siatki,
+	\item public void cleanCanvas(Canvas) - metoda  obsługująca działanie użytkownika polegaące na żądaniu wyczyszczenia planszy ( ustawienie płótna na "czarne"),
+	\item public void drawSingeCell(Canvas, int, int , Cell.State) - metoda zmieniająca wygląd pola planszy, które reprezentuje konkretną komórkę,
+	\item public void blackFill(Canvas) - wypełnienie płótna czarnym kolorem,
+	\item public void setPromptForDimensions(TextField, TextField)-
+	\item public void setCell(Cell.State, int, int , boolean) - metoda zmieniająca zmienną "state" komórki na podstawie koloru, jaki reprezentuje ją na planszy widpcznje dla użytkownika,
+	\item public void boardClicked(MouseEvent) - metoda obsługująca kompleksowo przypadek zarejestrowania działania użytkownika w obrębie planszy ( użytkownik ma możliwość zmiany stanu komórki przez wybranie miejsca, w którym sie znajduje)
+	\item public void onUpdate()  - metoda uaktualniająca obiekt typu game, na podstawie zmian dokonanych w zmiennych "state" obiektów typu Cell (komórek)
+	\end {itemize}
+	
+	\item mettody typu "get" i "set" : 
+	\begin {itemize}
+	\item public void setCanvas(Canvas) ,
+	\item public Canvas getCanvas(),
+	\item public Color getSelectedColor(), 
+	\item public void setSelectedColor(Color).
+	\end{itemize}
+	
+	\item metody abstrakcyjne:
+
+	\begin{itemize}
+	\item public abstract void draw(Cell.State[])  - metoda "rysująca" planszę na podstawie przekazanej tablicy typu Cell.State reprezentującej stany poszczególnych komórek,
+	\item public abstract void randomFill(Game game) - metoda odpowiadająca za wypełnienie pól planszy losowymi kolorami reprezentującymi stany komórek,
+	\item public abstract Cell.State pickState() - metoda zmieniająca wartość zmiennej "state" obiektu klasy Cell ( stan komórki) na podstawie reprezentowanego przez nią na planszy koloru)
+	\end{itemize}
+\end{itemize}
+
+Klasy dziedziczące po tej klasie to:
+\begin {enumerate}
+\item \textbf {public class GameofLifeBoard} - klasa odpowiadająca wariantowi gry "Game of Life"
+\item \textbf {public class WireworldBoard} - klasa odpowiadająca wariantowi gry "Wireworld"
+
+Klasy te nadpisują metody abstrakcyjne klasy Board głównie w zależności od ilości możliwych stanów komórek oraz ich reprezentacji w interfejsie użytkownika.
+\end{enumerate}
+
+\item \textbf {Game.fxm}l - dokument opisujący wygląd Graficznego Interfejsu Użytkownika. 
+
+\end{enumerate}
+
+
+
+
+
+\section {Zastosowane algorytmy}
+W programie zostały zastosowane następujące algorytmy:
+
+
+\subsection{ Algorytm wyznaczania stanu komórki dla wariantu gry Life}
+	\begin {enumerate}
+	\item Wywołanie metody klasy Board dla konkretnej komórki w celu zliczenia jej żywych sąsiadów.
+	\item Określenie stanu komórki na podstawie ilości jej żywych sąsiadów:
+		\begin{itemize}
+		\item Komórka martwa -jeżeli  liczba żywych sąsiadów wynosi 3, stan komórki zostaje określony jako "żywa", w innym wypadku komórka pozostaje martwa;
+		\item Komórka żywa - jeżeli liczba żywych komórek wynosi 2 lub 3, stan nie zmienia się , w innym wypadku komórka pozostaje martwa.
+		\end{itemize}
+	\item Zapis nowej wartości stanu komórki w obiekcie klasy Cells pod zmienną \texttt{state}.
+	\end {enumerate}
+
+
+\subsection { Algorytm wyznaczania stanu komórki dla wariantu gry Wireworld}
+	\begin {enumerate}
+		\item Wywołanie metody klasy Board zliczającej sąsiednich komórek, których stan określany jest jako Głowa Elektronu. 
+		\item Określenie stanu komórki na podstawie poprzedniego stanu i analizy stanów sąsiednich komórek.
+		\begin{itemize}
+		\item Komórka pozostaje Pusta, jeśli była Pusta.
+		\item Komórka staje się Ogonem elektronu, jeśli była Głową elektronu.
+		\item Komórka staje się Przewodnikiem, jeśli była Ogonem elektronu.
+		\item Komórka staje się Głową elektronu tylko wtedy, gdy dokładnie 1 lub 2 sąsiadujące komórki są Głowami Elektronu.
+		\item Komórka staje się Przewodnikiem w każdym innym wypadku
+	\end{itemize}
+	\item Zapis nowej wartości stanu komórki w obiekcie klasy Cells pod zmienną \texttt{state}.
+	
+\end {enumerate}
+Dla obu algorytmów wykorzystane jest sąsiedztwo Moore'a. 
+
+
+\section {Testy}
+
+\subsection {Test modułu Models}
+
+\subsection {Test modułu View}
+
+\subsection {Testy zapisu do pliku i odczytu z pliku}
+
+
+\end{document}
