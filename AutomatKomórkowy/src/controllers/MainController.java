@@ -66,7 +66,7 @@ public class MainController {
     public void initialize(){
 
         //___________________________WireWorld_______________________________________
-        wwCells wwCells = new wwCells(64,48);
+        WwCells wwCells = new WwCells(64,48);
         WireWorld WireWorld = new WireWorld(wwCells);
         WireWorldBoard wwBoard  = new WireWorldBoard(WireWorld, wwCanvas);
         WireWorld.subscribe(wwBoard);
@@ -84,10 +84,12 @@ public class MainController {
         wwRandomFill.setOnAction(e -> wwBoard.randomFill(WireWorld));
         wwNextGeneration.setOnAction(e -> WireWorld.play());
 
-        wwBoard.getCanvas().setOnMouseClicked(wwBoard::boardClicked);
+      //  wwBoard.getCanvas().setOnMouseClicked(wwBoard::boardClicked);
 
+        
+        
         //___________________________GameOfLife_______________________________________
-        golCells golCells = new golCells(32,24);
+        GolCells golCells = new GolCells(32,24);
         GameOfLife GameOfLife = new GameOfLife(golCells);
         GameOfLifeBoard golBoard = new GameOfLifeBoard(GameOfLife, golCanvas);
         GameOfLife.subscribe(golBoard);
@@ -105,20 +107,63 @@ public class MainController {
         golRandomFill.setOnAction(e -> golBoard.randomFill(GameOfLife));
         golNextGeneration.setOnAction(e -> GameOfLife.play());
 
+        
+        
         //color select
-        Rectangle[] colorPickers = new Rectangle []{white, black, empty, head, tail, conductor};
+        Rectangle[] colorPickers = new Rectangle []{white, black};
+        
         for (Rectangle colorRect : colorPickers)
-        colorRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-                golBoard.setSelectedColor((Color)colorRect.getFill());
-                ww.Board.setSelectedColor((Color)colorRect.getFill());
-
-                if(golBoard.getSelectedColor() == Color.WHITE)
-                    System.out.println("Wybrano kolor biały");
-            }
-        });
-
+	        colorRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            
+	        	@Override
+	            public void handle(MouseEvent t) {
+	        		golBoard.setSelectedColor((Color)colorRect.getFill());
+	                wwBoard.setSelectedColor((Color)colorRect.getFill());
+	
+	                
+	                if(golBoard.getSelectedColor() == Color.WHITE) {
+	                    System.out.println("Wybrano kolor biały");
+	                    golBoard.setSelectedColor(Color.WHITE);}
+	                
+	                else if(golBoard.getSelectedColor() == Color.BLACK) {
+	                    System.out.println("Wybrano kolor czarny");
+	                    golBoard.setSelectedColor(Color.BLACK);
+	                   }
+	        	}
+	        }    );
+        	
+        
+        
+        Rectangle[] colorPickers2 = new Rectangle []{empty, head, tail, conductor};
+       
+	        for (Rectangle colorRect : colorPickers2)
+	        colorRect.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	            
+	        	@Override
+	            public void handle(MouseEvent t) {
+	                wwBoard.setSelectedColor((Color)colorRect.getFill());
+	
+	                
+	                if(wwBoard.getSelectedColor() == Color.BLUE) {
+	                    System.out.println("Wybrano kolor niebieski");
+	                    wwBoard.setSelectedColor(Color.BLUE);
+	                   }
+	                else if(wwBoard.getSelectedColor() == Color.RED) {
+	                    System.out.println("Wybrano kolor czerwony");
+	                    wwBoard.setSelectedColor(Color.RED);
+	                   }
+	                else if(wwBoard.getSelectedColor() == Color.YELLOW) {
+	                    System.out.println("Wybrano kolor zolty");
+	                    wwBoard.setSelectedColor(Color.YELLOW);
+	                   }
+	                else if(wwBoard.getSelectedColor() == Color.BLACK) {
+	                    System.out.println("Wybrano kolor czarny");
+	                    wwBoard.setSelectedColor(Color.BLACK);
+	                   }
+	            }
+	        });
+        
+        wwBoard.getCanvas().setOnMouseClicked(wwBoard::boardClicked);
         golBoard.getCanvas().setOnMouseClicked(golBoard::boardClicked);
     }
 }
