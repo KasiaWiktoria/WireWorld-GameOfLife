@@ -6,17 +6,17 @@ import static models.Cell.State.*;
 
 public class GameOfLife extends Game {
 
-    protected golCells cells;
+    protected GolCells cells;
 
-    public GameOfLife(golCells cells) {
+    public GameOfLife(GolCells cells) {
         super(cells);
         this.cells = cells;
-        this.cells.cellsBoard = new golCell[cells.numberOfCells];
+        this.cells.cellsBoard = new GolCell[cells.numberOfCells];
         int c = cells.columns;
         int r = cells.rows;
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells.cellsBoard[i*c+j] = new golCell(j*cells.cellSize, i*cells.cellSize, cells.cellSize, DEAD);
+                this.cells.cellsBoard[i*c+j] = new GolCell(j*cells.cellSize, i*cells.cellSize, cells.cellSize, DEAD);
             }
         }
 
@@ -27,24 +27,27 @@ public class GameOfLife extends Game {
         int r = this.cells.rows;
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells.cellsBoard[i*c+j] = new golCell(j*this.cells.cellSize, i*cells.cellSize, this.cells.cellSize, states[i*c+j]);
+                this.cells.cellsBoard[i*c+j] = new GolCell(j*this.cells.cellSize, i*cells.cellSize, this.cells.cellSize, states[i*c+j]);
             }
         }
     }
 
     @Override
     public void readStates(int[] intStates){
-        this.cells.cellsBoard = new golCell[this.cells.numberOfCells];
+        this.cells.cellsBoard = new GolCell[this.cells.numberOfCells];
         this.cells.cellsStates = new Cell.State[this.cells.numberOfCells];
         for(int i = 0; i < this.cells.numberOfCells; i++){
             if(intStates[i] == 0) {
                 this.cells.cellsStates[i] = DEAD;
+       
             }
             else if(intStates[i] == 1) {
                 this.cells.cellsStates[i] = ALIVE;
+            
             }
         }
-        this.setCellsBoard(this.cells.cellsStates);
+        this.setCellsBoard(this.cells.cellsStates);	
+        
     }
 
     @Override

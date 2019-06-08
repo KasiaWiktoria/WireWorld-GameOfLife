@@ -33,10 +33,10 @@
                         <Button layoutX="40.0" layoutY="604.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Save" />
                         <Button fx:id="wwDimension" layoutX="703.0" layoutY="604.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="Set" />
                         <Button fx:id="wwBoardReset" layoutX="36.0" layoutY="347.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="board reset" />
-                        <Rectangle fx:id="tail" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="45.0" layoutX="36.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-                        <Rectangle fx:id="head" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="45.0" layoutX="82.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-                        <Rectangle fx:id="conductor" arcHeight="5.0" arcWidth="5.0" fill="#fff71f" height="45.0" layoutX="36.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
-                        <Rectangle fx:id="empty" arcHeight="5.0" arcWidth="5.0" fill="#010911" height="45.0" layoutX="82.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+                        <Rectangle fx:id="tail" arcHeight="5.0" arcWidth="5.0" fill="RED" height="45.0" layoutX="36.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+                        <Rectangle fx:id="head" arcHeight="5.0" arcWidth="5.0" fill="BLUE" height="45.0" layoutX="82.0" layoutY="223.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+                        <Rectangle fx:id="conductor" arcHeight="5.0" arcWidth="5.0" fill="YELLOW" height="45.0" layoutX="36.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
+                        <Rectangle fx:id="empty" arcHeight="5.0" arcWidth="5.0" fill="BLACK" height="45.0" layoutX="82.0" layoutY="268.0" stroke="BLACK" strokeType="INSIDE" width="45.0" />
                         <Button fx:id="wwRandomFill" layoutX="36.0" layoutY="380.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="random fill" />
                      </children>
                      <effect>

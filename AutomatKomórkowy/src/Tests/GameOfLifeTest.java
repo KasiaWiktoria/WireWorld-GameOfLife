@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import models.Cell;
 import models.GameOfLife;
-import models.golCell;
-import models.golCells;
+import models.GolCell;
+import models.GolCells;
 
 
 class GameOfLifeTest {
@@ -24,8 +24,8 @@ class GameOfLifeTest {
 		
 		int row=4;
 		int column=5;
-		golCell[] cellBoard= new golCell [row*column];
-		golCells cells = new golCells(column,row);
+		GolCell[] cellBoard= new GolCell [row*column];
+		GolCells cells = new GolCells(column,row);
 		Cell.State[] tabCells= new Cell.State[row*column];
 		
 		//tablica stanów i Cells
@@ -40,7 +40,7 @@ class GameOfLifeTest {
 
 			for (int i=0;i<row;i++) {
 				for (int j=0; j<column;j++) {
-					cellBoard[i*column+j]= new golCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
+					cellBoard[i*column+j]= new GolCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
 					if ((j+i)%2==0)
 						cellBoard[i*column+j].setState(Cell.State.ALIVE);
 			            }
@@ -70,8 +70,8 @@ class GameOfLifeTest {
 				
 				int row=4;
 				int column=5;
-				golCell[] cellBoard= new golCell [row*column];
-				golCells cells = new golCells(column,row);
+				GolCell[] cellBoard= new GolCell [row*column];
+				GolCells cells = new GolCells(column,row);
 				Cell.State[] tabCells= new Cell.State[row*column];
 				
 				//tablica stanów i Cells
@@ -86,7 +86,7 @@ class GameOfLifeTest {
 
 					for (int i=0;i<row;i++) {
 						for (int j=0; j<column;j++) {
-							cellBoard[i*column+j]= new golCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
+							cellBoard[i*column+j]= new GolCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
 							if ((j+i)%2==0)
 								cellBoard[i*column+j].setState(Cell.State.ALIVE);
 					            }
@@ -113,8 +113,8 @@ class GameOfLifeTest {
 //given
 		int row=4;
 		int column=5;
-		golCell[] cellBoard= new golCell [row*column];
-		golCells cells = new golCells(column,row);
+		GolCell[] cellBoard= new GolCell [row*column];
+		GolCells cells = new GolCells(column,row);
 		Cell.State[] tabCells= new Cell.State[row*column];
 
 		
@@ -129,7 +129,7 @@ class GameOfLifeTest {
 
 			for (int i=0;i<row;i++) {
 				for (int j=0; j<column;j++) {
-					cellBoard[i*column+j]= new golCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
+					cellBoard[i*column+j]= new GolCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
 					if ((j+i)%2==0)
 						cellBoard[i*column+j].setState(Cell.State.ALIVE);
 			            }
@@ -156,14 +156,14 @@ class GameOfLifeTest {
 				assertEquals(game.getCells().getCellsStates()[i*column+j], Cell.State.DEAD);
 }}}
 
-	/* NIE WIEM CZEMUNIE £APIE MI chechState()
+	 //NIE WIEM CZEMUNIE £APIE MI chechState()
 
 		void countAliveNextCells(){
 //given
 			int row=3;
 			int column=3;
-			golCell[] cellBoard= new golCell [row*column];
-			golCells cells = new golCells(column,row);
+			GolCell[] cellBoard= new GolCell [row*column];
+			GolCells cells = new GolCells(column,row);
 			Cell.State[] tabCells= new Cell.State[row*column];
 
 			
@@ -178,7 +178,7 @@ class GameOfLifeTest {
 
 				for (int i=0;i<row;i++) {
 					for (int j=0; j<column;j++) {
-						cellBoard[i*column+j]= new golCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
+						cellBoard[i*column+j]= new GolCell(j*cells.getCellSize(), i*cells.getCellSize(), cells.getCellSize(), DEAD);
 						if ((j+i)%2==0)
 							cellBoard[i*column+j].setState(Cell.State.ALIVE);
 				            }
@@ -192,12 +192,12 @@ class GameOfLifeTest {
 			
 			for (int i=0;i<row;i++) {
 				for (int j=0; j<column;j++) {
-					assertEquals(game.getCells().getCellsBoard()[i*column+j].checkState(), DEAD );
+					assertEquals(((GolCell) game.getCells().getCellsBoard()[i*column+j]).checkState(), DEAD );
 			
 			
 		}
 
 }}
 		}
-*/
+
 

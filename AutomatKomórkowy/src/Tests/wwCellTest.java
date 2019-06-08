@@ -7,15 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import models.Cell;
 import models.GolCell;
+import models.WwCell;
 import models.Cell.State;
 
-class golCellTest {
+class wwCellTest{
 
 
     @Test
     public void setX() {
         //given
-    	GolCell cell= new GolCell(3, 4, 10, Cell.State.ALIVE);
+    	WwCell cell= new WwCell(3, 4, 10, Cell.State.HEAD);
     	double expVal=5;
     	
         //when
@@ -30,7 +31,7 @@ class golCellTest {
     @Test
     public void setY() {
         //given
-    	GolCell cell= new GolCell(3, 4, 10, Cell.State.ALIVE);
+    	WwCell cell= new WwCell(3, 4, 10, Cell.State.HEAD);
     	double expVal=5;
     	
         //when
@@ -48,9 +49,8 @@ class golCellTest {
     public void setSize() { 
     	//given
     	double size =20;
-    	GolCell cell= new GolCell(3, 4, 10, Cell.State.ALIVE);
-
-    	
+    	WwCell cell= new WwCell(3, 4, 10, Cell.State.HEAD);
+   
         //when
     	cell.setSize(size);
     	
@@ -66,7 +66,7 @@ class golCellTest {
     public void setState() { 
     	//given
     	State state= Cell.State.ALIVE;
-    	GolCell cell= new GolCell(3, 4, 10, Cell.State.ALIVE);
+    	WwCell cell= new WwCell(3, 4, 10, Cell.State.HEAD);
 
     	
     	//when
@@ -78,3 +78,4 @@ class golCellTest {
 }
 
 }
+

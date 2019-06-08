@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import models.Cell;
-import models.GolCell;
-import models.GolCells;
+import models.WwCell;
+import models.WwCells;
 
-class golCellsTest {
+class wwCellsTest {
 
 	@Test 
 	void setRows() {
 		//given 
 		int row = 10;
-		GolCells cells = new GolCells(3,4);
+		WwCells cells = new WwCells(3,4);
 		
 		//when
 		cells.setRows(row);
@@ -29,7 +29,7 @@ class golCellsTest {
 	void setColumns() {
 		//given 
 		int column = 25;
-		GolCells cells = new GolCells(3,4);
+		WwCells cells = new WwCells(3,4);
 		
 		//when
 		cells.setColumns(column);
@@ -43,7 +43,7 @@ class golCellsTest {
 	void setCellSize() {
 		//given 
 		double size = 24;
-		GolCells cells = new GolCells(3,4);
+		WwCells cells = new WwCells(3,4);
 		
 		//when
 		cells.setCellSize(size);
@@ -58,13 +58,13 @@ class golCellsTest {
 		//given 
 		int row=4,column=5;
 		int num =column*row;
-		GolCells cells = new GolCells(row,column);
+		WwCells cells = new WwCells(row,column);
 		Cell.State tab[]= new Cell.State[num];
 		
 		for (int i=0;i<row;i++) {
 			for (int j=0; j<column;j++)
 				if ((i+j)%2==0)
-				tab[i*column+j]=Cell.State.ALIVE;
+				tab[i*column+j]=Cell.State.HEAD;
 		}
 		
 	
@@ -84,7 +84,7 @@ class golCellsTest {
 	void setNumberOfCells() {
 		//given 
 		int num =10;
-		GolCells cells = new GolCells(3,4);
+		WwCells cells = new WwCells(3,4);
 		
 		//when
 		cells.setNumberOfCells(num);
@@ -99,17 +99,21 @@ class golCellsTest {
 		//given 
 		int row=4,column=5;
 		int num =column*row;
-		GolCells cells = new GolCells(row,column);
-		GolCell tab[]= new GolCell[num];
-		Cell.State state=Cell.State.ALIVE;
+		WwCells cells = new WwCells(row,column);
+		WwCell tab[]= new WwCell[num];
+		Cell.State state=Cell.State.EMPTY;
 		
 		for (int i=0;i<row;i++) {
 			for (int j=0; j<column;j++) {
-				if ((i+j)%2==0) 
-					state=Cell.State.ALIVE;
+				if ((i+j)%4==0) 
+					state=Cell.State.EMPTY;
+				else if ((i+j)%4==1) 
+					state=Cell.State.HEAD;
+				else if ((i+j)%4==0) 
+					state=Cell.State.TAIL;
 					else
-						state=Cell.State.DEAD;
-				tab[i*column+j]=new GolCell (column,row,cells.getCellSize(),state);}
+						state=Cell.State.CONDUCTOR;
+				tab[i*column+j]=new WwCell (column,row,cells.getCellSize(),state);}
 		}
 			
 		
@@ -124,7 +128,4 @@ class golCellsTest {
 	    }    
 	    }
 	
-	
 }
-
-

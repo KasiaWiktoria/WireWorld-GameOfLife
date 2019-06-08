@@ -4,18 +4,18 @@ import static models.Cell.State.*;
 
 public class WireWorld extends  Game {
 
-    protected wwCells cells;
+    protected WwCells cells;
 
-    public WireWorld(wwCells cells) {
+    public WireWorld(WwCells cells) {
         super(cells);
         this.cells = cells;
         System.out.println(this.cells.cellsBoard.length);
-        this.cells.cellsBoard = new wwCell[this.cells.numberOfCells];
+        this.cells.cellsBoard = new WwCell[this.cells.numberOfCells];
         int c = cells.columns;
         int r = cells.rows;
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells.cellsBoard[i*c+j] = new wwCell(j*this.cells.cellSize, i*this.cells.cellSize, this.cells.cellSize, EMPTY);
+                this.cells.cellsBoard[i*c+j] = new WwCell(j*this.cells.cellSize, i*this.cells.cellSize, this.cells.cellSize, EMPTY);
             }
         }
     }
@@ -26,7 +26,7 @@ public class WireWorld extends  Game {
         int r = cells.rows;
         for(int i = 0; i < r; i++){
             for(int j = 0; j < c;j++){
-                this.cells.cellsBoard[i*c+j] = new wwCell(j*cells.cellSize, i*cells.cellSize, cells.cellSize, states[i*c+j]);
+                this.cells.cellsBoard[i*c+j] = new WwCell(j*cells.cellSize, i*cells.cellSize, cells.cellSize, states[i*c+j]);
             }
         }
     }
@@ -88,7 +88,7 @@ public class WireWorld extends  Game {
 
     @Override
     public void readStates(int[] intStates){
-        this.cells.cellsBoard = new wwCell[this.cells.numberOfCells];
+        this.cells.cellsBoard = new WwCell[this.cells.numberOfCells];
         this.cells.cellsStates = new Cell.State[this.cells.numberOfCells];
 
         for(int i = 0; i < this.cells.numberOfCells; i++){
