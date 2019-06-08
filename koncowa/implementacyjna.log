@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.5)  6 JUN 2019 23:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2019.3.5)  8 JUN 2019 13:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -427,6 +427,12 @@ LaTeX Warning: Label `fig:obrazek k2' multiply defined.
 
 LaTeX Warning: Label `fig:obrazek k2' multiply defined.
 
+
+LaTeX Warning: Label `fig:obrazek k2' multiply defined.
+
+
+LaTeX Warning: Label `fig:obrazek k2' multiply defined.
+
 )
 \openout1 = `implementacyjna.aux'.
 
@@ -575,35 +581,41 @@ File: 7.png Graphic file (type png)
 <use 7.png>
 Package pdftex.def Info: 7.png  used on input line 105.
 (pdftex.def)             Requested size: 199.16928pt x 142.09029pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 123.
+<8.png, id=37, 1016.29688pt x 343.2825pt>
+File: 8.png Graphic file (type png)
+<use 8.png>
+Package pdftex.def Info: 8.png  used on input line 115.
+(pdftex.def)             Requested size: 199.16928pt x 67.27243pt.
+
+[5 <./5.png> <./7.png> <./8.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 129.
 
 
 (c:/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 123.
- [5 <./5.png> <./7.png>]
-[6]
-Overfull \hbox (1.77025pt too wide) in paragraph at lines 160--161
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 129.
+ [6]
+Overfull \hbox (1.77025pt too wide) in paragraph at lines 166--167
 []\T1/cmr/m/n/10 public vo-id in-it-Cel-ls-Bo-ard() - me-to-da przy-pi-su-j¡-ca
  da-ne do obiek-
  []
 
 [7]
-Overfull \hbox (1.77025pt too wide) in paragraph at lines 201--202
+Overfull \hbox (1.77025pt too wide) in paragraph at lines 207--208
 []\T1/cmr/m/n/10 public vo-id in-it-Cel-ls-Bo-ard() - me-to-da przy-pi-su-j¡-ca
  da-ne do obiek-
  []
 
 [8] [9] [10]
-Overfull \hbox (6.49132pt too wide) in paragraph at lines 333--334
+Overfull \hbox (6.49132pt too wide) in paragraph at lines 339--340
 []\T1/cmr/m/n/10 public vo-id bo-ardC-lic-ked(MouseEvent) - me-to-da ob-sªu-gu-
 j¡-ca kom-
  []
 
 [11]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 382.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 388.
 
  (c:/texlive/2018/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -616,13 +628,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 15183 strings out of 492616
- 307805 string characters out of 6132769
+ 15188 strings out of 492616
+ 307849 string characters out of 6132769
  344426 words of memory out of 5000000
- 18816 multiletter control sequences out of 15000+600000
+ 18820 multiletter control sequences out of 15000+600000
  12079 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,73p,839b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,11n,73p,839b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2018/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<c:/texl
 ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2018/
 texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb><c:/texlive/2018/texmf-dist
@@ -631,10 +643,10 @@ e1/public/cm-super/sfbx1440.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/
 cm-super/sfrm1000.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/cm-super/s
 frm1200.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pf
 b><c:/texlive/2018/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on implementacyjna.pdf (13 pages, 309870 bytes).
+Output written on implementacyjna.pdf (13 pages, 360832 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
+ 99 PDF objects out of 1000 (max. 8388607)
  60 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 48 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
