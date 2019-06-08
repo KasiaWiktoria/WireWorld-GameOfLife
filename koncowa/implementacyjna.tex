@@ -109,12 +109,18 @@ Zasady obsługi nie różnią się od obsługi wariantu gry Wireworld.
 
 \end{enumerate}
 
-
+\section {Diagram klas}
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]8
+\caption{Diagram klas}
+\label{fig:obrazek k2}
+\end{figure}
 
 \section{Schemat działania programu}
 Program reaguje bezpośrednio na komendy użytkownika. 
 
-\section {Diagram klas}
+
 
 \begin{enumerate}
 \item Uruchomienie aplikacji - ekran startowy. Fragment przedstawiający siatkę komórek jest czarny -  komórki domyślnie są martwe lub puste w zależności od wariantu gry
@@ -403,10 +409,11 @@ Dla obu algorytmów wykorzystane jest sąsiedztwo Moore'a.
 \section {Testy}
 
 \subsection {Test modułu Models}
+Testy tego modułu są najbardziej rozbudowane. Obejmują klasy obu wariantów gry - Wireworld oraz GameofLife. Testy klas dziedziczących po klasie abstrakcyjnej Cell - WwCell oraz GolCell obejmują testy metod, nie jest wymagane korzystanie przy nich z metod oraz zmiennych innych klas. Testy klas dziedziczących po abstrakcyjnej klasie Cells -GolCells oraz WwCells wymagają wykorzystania obiektów, metod oraz zmiennych klas dziedziczących po klasie Cell. Testy klas dziedziczących po klasie abstrakcyjnej Game - Wireworld oraz GameOfLife wymagają wykorzystania wszytskich wcześniej wymienionych.
 
 \subsection {Test modułu View}
+Testy tego modułu polegają na uruchomieniu tylko fragmentu kodu znajdującego się w pakiecie View. 
 
-\subsection {Testy zapisu do pliku i odczytu z pliku}
 
 
 \end{document}

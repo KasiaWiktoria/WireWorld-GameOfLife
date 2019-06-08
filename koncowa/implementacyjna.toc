@@ -1,16 +1,15 @@
 \contentsline {section}{\numberline {1}Informacje og\IeC {\'o}lne}{2}% 
 \contentsline {subsection}{\numberline {1.1}Dzia\IeC {\l }anie programu}{2}% 
-\contentsline {section}{\numberline {2}Schemat dzia\IeC {\l }ania programu}{5}% 
-\contentsline {section}{\numberline {3}Diagram klas}{5}% 
+\contentsline {section}{\numberline {2}Diagram klas}{5}% 
+\contentsline {section}{\numberline {3}Schemat dzia\IeC {\l }ania programu}{5}% 
 \contentsline {section}{\numberline {4}Zmiany w stosunku do specyfikacji funkcjonalnej oraz implementacyjnej }{6}% 
 \contentsline {section}{\numberline {5}Opis modu\IeC {\l }\IeC {\'o}w i klas}{6}% 
 \contentsline {subsection}{\numberline {5.1}Modu\IeC {\l } Model}{7}% 
 \contentsline {subsection}{\numberline {5.2}Modu\IeC {\l } Controller}{10}% 
-\contentsline {subsection}{\numberline {5.3}Modu\IeC {\l } View}{10}% 
+\contentsline {subsection}{\numberline {5.3}Modu\IeC {\l } View}{11}% 
 \contentsline {section}{\numberline {6}Zastosowane algorytmy}{12}% 
 \contentsline {subsection}{\numberline {6.1} Algorytm wyznaczania stanu kom\IeC {\'o}rki dla wariantu gry Life}{12}% 
 \contentsline {subsection}{\numberline {6.2} Algorytm wyznaczania stanu kom\IeC {\'o}rki dla wariantu gry Wireworld}{13}% 
 \contentsline {section}{\numberline {7}Testy}{13}% 
 \contentsline {subsection}{\numberline {7.1}Test modu\IeC {\l }u Models}{13}% 
 \contentsline {subsection}{\numberline {7.2}Test modu\IeC {\l }u View}{13}% 
-\contentsline {subsection}{\numberline {7.3}Testy zapisu do pliku i odczytu z pliku}{13}% 
